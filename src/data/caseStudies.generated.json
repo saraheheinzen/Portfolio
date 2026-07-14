@@ -1,0 +1,1472 @@
+{
+  "spatial-spaces-picker": {
+    "company": "Spatial",
+    "title": "Spaces Picker",
+    "intro": "Spatial began as a VR Workplace application. However, as the app grew, user feedback proved that it was necessary to pivot towards a direction that emphasized community and artistic creativity- eventually leading to Spatial's position in the NFT space. The first step in this was to redesign how to access spaces.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Figma, Competitor Analysis"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Redesigning Spatial's homepage and spaces picker\n• Creating a consistent design across mobile, web, and VR"
+      }
+    ],
+    "hero": {
+      "src": "/media/spatial-spaces-picker/Group-3809.png",
+      "alt": "This image shows a side-by-side comparison of the virtual space platform on different devices:\nHeadset: A VR version of the virtual spaces interface.\nDesktop: The desktop interface features events and public spaces, similar to a traditional web layout."
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Research",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "2021\nWhen this project started, Spatial was still on the cusp of being a productivity app and a VR social application. The idea of introducing NFTs wasn't even thought of yet, but we knew we wanted to highlight our user communities and make them accessible to everyone. I started researching collaboration tools like Figma, Miro, and more, then researched how these could be integrated into a Headset UI."
+          },
+          {
+            "type": "text",
+            "text": "2022\nPlot twist- Spatial pivoted to provide for NFT artists! This required a whole new round of research to understand our new userbase and what they need. We were (and still are) the leading platform for metaverse events and art, and our primary userbase became web instead of Oculus Quest."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Group-3496.png",
+            "alt": ""
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Design",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "2021\nSpatial is an ever-changing, fast-paced startup. So, I jumped in! I went through many iterations with stakeholders on what specific details should be highlighted in our Spaces picker. Ultimately, we decided on having real-time image feedback of participants as our spaces thumbnails. The only truly necessary information was the room name, who made it, and current participants."
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/682518404?h=dda0d04697",
+            "portrait": false
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Frame-3643.png",
+            "alt": "A flowchart shows the step-by-step process for logging in and creating virtual rooms:\nLogin: A decision-making process guides the user to either view trending spaces or create a new room.\nRooms: The user can choose between private and public rooms and proceed through the room creation process."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Frame-3644.png",
+            "alt": "A design exploration for web and headset platforms showing a grid with circular previews of each space.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Frame-11_1.png",
+            "alt": "This image displays the interaction flow across three platforms:\nWeb: The user navigates through the virtual spaces interface with options for room creation and public room exploration.\nHeadset: VR users interact with similar options in a more immersive environment, featuring hand controllers.\nMobile: A mobile interface showing simplified navigation and interaction, designed for smaller screens.",
+            "row": 1
+          },
+          {
+            "type": "text",
+            "text": "2022\nI felt that our original design for web wasn't fit for the new NFT users we were working with, so I pushed for a revamp. Fortunately, stakeholders agreed, and I started iterating on our new platform, including a deeper dive into our information architecture.\n\nBefore the pivot, users had to create an account to experience our small metaverse. Now that we were growing, we readdressed our user flows to allow authless users to view spaces. This would allow for creators to share their work with a larger audience.",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Frame-5127.png",
+            "alt": "This image shows a detailed user flow diagram for the web version of the virtual spaces platform:\nIt includes a structure for \"Authless\" (unauthenticated) and \"Signed in\" user states, with various navigation options and event listings depending on the user's status.\nThe left side shows a high-level web navigation structure."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Launches",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/spaces.png",
+            "alt": "This image highlights the design evolution of the virtual spaces platform from 2020 to 2022:\n2020: A simple interface with a focus on basic room selections.\n2021: A more refined interface with larger thumbnails of virtual spaces and a more visual layout.\n2022: The latest iteration introduces events and public spaces, with a cleaner and more modern design."
+          },
+          {
+            "type": "text",
+            "text": "2021",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Group-3631.png",
+            "alt": "his image demonstrates how the virtual space interface appears across different platforms:\nVR headset view (top row): Shows hands interacting with a virtual space selection menu.\nDesktop view (middle row): The interface displays public and private spaces with detailed environment previews.\nMobile view (bottom): A simplified version of the space selection is shown on a mobile screen."
+          },
+          {
+            "type": "text",
+            "text": "2022",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-spaces-picker/Sign-On---reduce.png",
+            "alt": "This interface shows a platform for exploring virtual environments. The upper section highlights \"Events,\" with four colorful thumbnails of virtual spaces like \"The Meeting Place,\" \"McDonald's Hall of Zodiacs,\" and \"Baza Island.\" Below that, a section titled \"Public Spaces\" includes various environments such as \"Public Park,\" \"Elyx Museum,\" \"The Ethereal Aether,\" and more. There is a \"Create a Space\" button in the top right, and a search bar for navigation."
+          }
+        ]
+      }
+    ]
+  },
+  "spatial-auto-gallery": {
+    "company": "Spatial",
+    "title": "Auto Gallery",
+    "intro": "As Spatial's new mission became to provide accessible creator tools for NFT artist, our priority was to build a system to instantaneously populate a gallery in under a minute.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Figma, Spatial, Competitor Analysis"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer"
+      },
+      {
+        "label": "Challenges",
+        "value": "• How to design a gallery setup flow for users from start to finish, that takes less than one minute (?!)"
+      }
+    ],
+    "hero": {
+      "src": "/media/spatial-auto-gallery/Group-3670.png",
+      "alt": "A user interface panel titled \"Place in frames?\" prompts the user with the option to either automatically place new content into available gallery frames or manually choose placement. The panel shows a grid of colorful NFT avatars in a preview mode. The prompt at the bottom offers two options: \"Yes, Lay It Out!\" or \"No Thanks.\""
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Research",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "There was one thing our new userbase was asking for, and it was better NFT gallery population tools. Although we were one of the first, we were already being compared to competitors. It was increasingly necessary to dive into competitor analysis and find out how we could make this user experience better.\n\nFrom the research, we decided that the most important thing to focus on was time. How could users log in directly with their wallets, then place all of their NFT's at once?\n\nAdditionally, based on our user data, most of our userbase was using web. We decided to pivot to a web-first model."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-auto-gallery/Frame-3659.png",
+            "alt": "The image shows a comparison of features between different virtual platforms: Cyber, Cryptovoxels, and Kunstmatrix. It is laid out in columns and rows, with visual indicators (red X or green checkmarks) to indicate the availability of specific features. The platforms are compared on criteria such as interactivity, customization, and setup processes for galleries or exhibitions."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Design",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/spatial-auto-gallery/Group-3662.png",
+            "alt": "A step-by-step walkthrough of logging into a gallery space for the first time, using Metamask for authentication. The image shows various screens, starting from logging in, loading the account, and finishing with a view of the virtual gallery, where the user can place items in frames. Various UI panels show selecting NFT content and placing it in the virtual space."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-auto-gallery/Frame-3776.png",
+            "alt": "A floor plan of a virtual gallery space labeled with numbers and split into different sections. It displays the order in which frames should be filled, labeled \"Fill 1st,\" \"Fill 2nd,\" and \"Fill 3rd.\" The central area has a larger display space with instructions indicating where to start filling frames for an exhibit."
+          },
+          {
+            "type": "text",
+            "text": "Once we got the ball rolling, the biggest challenge was coordinating with engineers to implement something seemingly simple. (Side note- because of our amazing engineering team, we were able to implement this entire flow in UNDER A MONTH.)\n\nWe introduced a Metamask login and scoped out the flow from start to finish, assuming our users would want to instantaneously populate a gallery. We hit a roadblock when we realized our content management system wasn't suitable for this flow. It wasn't easy to navigate content, and there was no way to multiselect. So, the new \"Stuff\" menu was born."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-auto-gallery/ezgif-2-4ea2a660bd.gif",
+            "alt": "A GIF showing a user logging into Metamask, selecting various NFT images, then clicking \"Done.\" The user is prompted with \"Turn on Auto gallery?\". When the user clicks yes, the NFT images are placed in walls in a virtual gallery in frames with descriptions."
+          },
+          {
+            "type": "text",
+            "text": "After multiple iterations with Eng, we were able to complete an MVP design including single frame upload and replacement. Unfortunately, for now VR headset would not have auto gallery functionality, and we would push users to our web platform."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-auto-gallery/Frame-3736.png",
+            "alt": "This is a display of a virtual gallery interface designed for a Head Mounted Display (HMD). The screen captures illustrate scenarios of uploading and displaying content in a gallery. Different scenarios include a gallery where empty frames are visible or hidden by default, and another option where users can upload their content by selecting empty frames on a wall."
+          },
+          {
+            "type": "image",
+            "src": "/media/spatial-auto-gallery/Frame-3735.png",
+            "alt": "This image shows a detailed user interface layout featuring several screen captures arranged in a flow. The sequence depicts steps for interacting with or configuring various elements on a gallery wall, showing actions like selecting frames, placing items, or uploading. There is visual guidance and text annotations describing each stage, possibly related to an NFT or virtual environment setup."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Launch",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Ultimately, we were able to design and ship a flow that took the user 50 seconds to lay out an entire gallery:"
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/682540318?h=f9400a6f1e",
+            "portrait": false
+          }
+        ]
+      }
+    ]
+  },
+  "tellsense": {
+    "company": "Microsoft Global Hackathon",
+    "title": "TellSense: A Portal Into Remembering",
+    "intro": "TellSense is a Microsoft Global Hackathon project that uses Mixed Reality as a tool and drives a stronger reconnection to memories through sensory simulation for Dementia and Alzheimer’s patients.\n\nI was able to pitch the idea and gather a small group of 6 people; we were able to prototype a Hololens2 and companion mobile app that successfully recognized photos and paired them with mixed reality sensory elements.\n\nWe ended up winning third place for the AI for Virtual Community Challenge!",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Vuforia Engine, Hololens2, Unity, MRTK, Figma"
+      },
+      {
+        "label": "Team",
+        "value": "Sarah Heinzen, Zak Alexander, Thai Phan, Salvador Sanchez, Sally Todd"
+      },
+      {
+        "label": "Role",
+        "value": "Team Lead"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Hack an AI-based solution that helps people connect, share, and grow within a virtual community\n• How can we use this hack to help the 1/4 of people above 85 who are living with dementia?"
+      }
+    ],
+    "hero": {
+      "src": "/media/tellsense/tellsensecover.png",
+      "alt": "A picture of a phone with the login screen for \"TellSense.\" Behind the phone is a HoloLens2. These are on a pink and purple gradient backround."
+    },
+    "badge": {
+      "src": "/media/tellsense/hackathon.png",
+      "alt": "Badge for Microsoft Global Hackathon 2022 Winner"
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "The Project",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Mixed Reality is an incredible tool that often falls short when it comes to inclusivity. It has historically been associated with gaming, productivity, and enterprise, but it is currently underutilized in its capacity to improve lives. AI and Mixed Reality is quickly evolving, and the opportunities to extend these tools to disabled users are growing.\n\nI have multiple family members who have or had dementia, and wanted to dive into solutions that could help them as their disease progresses. All of the incredible collaborators on this project also had connections to someone with dementia, and we worked together to take my small idea to something much greater."
+          },
+          {
+            "type": "image",
+            "src": "/media/tellsense/Layer-0.png",
+            "alt": "An older woman helps an elderly man look at photos using a HoloLens2"
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Research",
+        "layout": "horizontal-media-first",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/tellsense/Aug-05-2023-17-38-30.gif",
+            "alt": "A GIF showing cursors moving around a Figma file, filled with ideas and research around Dementia"
+          },
+          {
+            "type": "text",
+            "text": "There are several studies* about how the use of photo albums, music, and art therapy stimulate patients' cognitive function, by driving reconnection to past memories. Mixed Reality is clinically proven to heighten senses and help with memory retention. It activates the brain’s neurons and helps fortify those connections.\n\nAfter collecting data and long Figjam sessions, we decided to hone in on pairing sensory experiences to visual cues. Our hypothesis was that being able to view personal photo albums along with specific sounds or interactive elements, would help to trigger core memories for patients."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "The Prototype",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "The visual and UX designers on the team threw together a prototype of the phone app. The core user experience of the app was for remote family and friends to set up the interactive experience for their loved ones. The user could create a patient profile, upload specific photo albums, and pair each photo with 3D models and music linked to Spotify."
+          },
+          {
+            "type": "image",
+            "src": "/media/tellsense/Group-1010101182.png",
+            "alt": "A phone screen showing the home screen of an app called \"Tellsense,\" displaying the logo, a book icon with two pages, and the tagline \"a portal into remembering.\" There is a \"Sign in with Microsoft\" button and a \"Create a new account\" link below.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/tellsense/Group-1010101183.png",
+            "alt": "A phone screen showing a  profile screen featuring a picture of an elderly woman named \"Patsy Sanders, 73 years old.\" There’s a button to contact her care physician, Dr. Amy Thomas. Below, there are circular icons representing photo albums labeled \"Beach Trip,\" \"Kara’s Grad,\" \"Jane’s B’Day,\" and \"Italy.\"",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/tellsense/Group-1010101184.png",
+            "alt": "A phone screen showing an album titled \"Beach Trip\" is open, displaying a grid of images. There are sections for photos, videos, and objects. The background shows a beach with a palm tree.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/tellsense/Group-1010101185.png",
+            "alt": "A phone screen with the header, \"Add a scene from Paint3D.\" It shows a 3D beach ball as part of an image carousel, with the song \"Better Together\" selected. The image is tagged as being from Orlando, FL, and on the right shows a family photo.",
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "PrototypeDetail",
+        "title": "",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Then, we utilized Vuforia Engine, Hololens, and Unity to create a vision recognition prototype of the chosen photos.\n\nThe prototype continues to evolve each year. The design behind version one of TellSense intentionally leaves room to utilize this technology for future iterations. Facial and object recognition, gait tracking, and remote doctors will help in the diagnosis and management of dementia patients. This is only the beginning of an assistive future. See the current progress below:"
+          },
+          {
+            "type": "image",
+            "src": "/media/tellsense/Aug-05-2023-19-57-27.gif",
+            "alt": ""
+          }
+        ]
+      },
+      {
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/852017963?h=dec5b6dd2e",
+            "portrait": false
+          }
+        ]
+      },
+      {
+        "id": "Final",
+        "title": "*Citations",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "A collection of a few of our (documented) citations:"
+          },
+          {
+            "type": "text",
+            "text": "Maddie Bender. \"A photographic treatment for people with dementia.\" CNN, 20 Aug. 2018, https://www.cnn.com/2018/08/20/health/photographic-treatment-dementia-photos/index.html, Accessed Sept. 2022."
+          },
+          {
+            "type": "text",
+            "text": "Luma Tabbaa, Chee Siang Ang, Vienna Rose, Panote Siriaraya, Inga Stewart, Keith G. Jenkins, and Maria Matsangidou. 2019. Bring the Outside In: Providing Accessible Experiences Through VR for People with Dementia in Locked Psychiatric Hospitals. In Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (CHI '19). Association for Computing Machinery, New York, NY, USA, Paper 236, 1–15. https://doi.org/10.1145/3290605.3300466"
+          },
+          {
+            "type": "text",
+            "text": "Riaz, W., Khan, Z. Y., Jawaid, A., Shahid, S. (2021). Virtual reality (VR)-based environmental enrichment inolder adults with mild cognitive impairment (MCI) and mild dementia. Brain Sciences, 11(8), 1103."
+          },
+          {
+            "type": "text",
+            "text": "\"Virtual Therapy Is Helping Dementia Patients Tap Into Old Memories.\" Beloved Homecare, https://www.belovedhomecare.co.uk/news/virtual-therapy-is-helping-dementia-patients-tap-into-old-memories/. Sept. 2022."
+          },
+          {
+            "type": "text",
+            "text": "Emily Hayes. \"Playing Virtual Reality Video Game May Boost Seniors’ Memory.\" March 22, 2021. University of California San Francisco. https://www.ucsf.edu/news/2021/03/420096/playing-virtual-reality-video-game-may-boost-seniors-memory. Sept. 2022."
+          },
+          {
+            "type": "text",
+            "text": "Deborah Stone. \"How Images Can Help Dementia Sufferers Engage With Life.\" May 13, 2021. Psychology Today. https://www.psychologytoday.com/us/blog/caring-the-caregivers/202105/how-images-can-help-dementia-sufferers-engage-life. Sept. 2022."
+          },
+          {
+            "type": "text",
+            "text": "Jan Deal. \"How Art and Music Can Help Caregivers Treat Dementia Patients.\" Esme. https://esme.com/resources/caregiving/how-art-and-music-can-help-caregivers-treat-dementia-patients#:~:text=Art%20and%20music%20combined%20together%20can%20result%20in,mood%20swings%20but%20also%20inspired%20patients%20to%20paint. Sept. 2022."
+          }
+        ]
+      }
+    ]
+  },
+  "neato-hardware": {
+    "company": "Neato Robotics",
+    "title": "Neato Clean Center",
+    "intro": "Neato Clean Center is a self-emptying base compatible with Neato's future robots. I worked with Product to lead the initiative of adding Clean Center to our existing app and robot behaviors.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Figma, Appbot, Competitor Analysis, Zeplin"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Understanding how users approach robot accessories, and how that fits into the experience as a whole\n• Altering our existing app UI to include new actions on the top level, and defining how the UI will change when a Clean Center is not present\n• Defining LED and Audio behaviors for a device that can only communicate through its compatible robot"
+      }
+    ],
+    "hero": {
+      "src": "/media/neato-hardware/Rosy.png",
+      "alt": "This image combines a Neato robot vacuum docked at its base and a mobile screen displaying the app interface. The app shows a map of the house, with the robot docked and 100% battery. The interface allows users to locate the robot, start cleaning, and empty the dirt bin."
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Understanding the challenges",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Strap in... This one's a doozy!\n\nWhen I took on Clean Center, it was an unfinished project started by our sister company. Our design team had no input in the industrial design or experiences that had already been implemented on the hardware. Clean Center was not \"smart\"; it couldn't connect to the robot or app via Bluetooth or Wifi, and it did not have any frontward-facing LEDs to communicate with the user. The only way that Clean Center could communicate with the user at all was through the robot's LEDs or the app, only when the robot was docked.\n‍\nAdditionally, I learned that the industrial design requirements placed the opening to the base on the back- a major issue since, as the hardware was implemented at the time, the base could not be moved or adjusted outside of a small square footage range. The \"lid\" of the base being located on the back meant that the user would have to physically pull the base away from the wall, remove the back of the base to replace the filter, and hope that the base didn't move too far outside of its threshold, or else they would risk losing the robot's localization. I worked with Product on this issue specifically, but unfortunately the industrial design was set in stone.\n\nLastly, where did our base belong in the user flow? Should the base be considered its own unit, or an accessory, and where is the most intuitive place for the base controls to live?"
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/back.png",
+            "alt": "A 3D rendering of the Neato charging base with the internal components exposed. The base is open, revealing a compartment where debris is collected, and a removable bin is visible inside.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Front.png",
+            "alt": "This image shows a black charging base by Neato with a simple, minimalist design. The base has a docking station for the robot vacuum with two contact points for charging.",
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Research",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Our self-emptying base obviously had some issues, but how did it square up against our competitors? I audited Shark, Ecovacs, and iRobot to find out. While I did spend time auditing the industrial design and packaging of these bases, my main concern was with the LED behaviors and in-app experiences. All of our competitors had LED feedback on the base itself, something that ours was lacking. Shark actually had no in-app feedback or UI for its self-emptying base, but Ecovacs and iRobot did. In fact, they were dealing with the same problem I was: the base could not communicate unless the robot was docked."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Screen-Shot-2021-04-26-at-2.29.19-PM.png",
+            "alt": "This image shows a comparison of three different robot vacuums:\nShark IQ with Auto Empty ($459)\nAuto Empty Station for Deebot T8 (Base Only $249)\niRobot Clean Base ($1099 for robot & base, Base Only $249) Each product includes an image of the vacuum and its charging base.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Screen-Shot-2021-04-26-at-2.31.58-PM.png",
+            "alt": "A competitor analysis table compares robot vacuum features from different brands (S, N, R):\nFeatures include LED feedback on the base and robot, audio feedback, app feedback, manual and automatic emptying options, and the ability to turn off automatic emptying. The icons indicate which brands offer each feature.",
+            "row": 1
+          },
+          {
+            "type": "text",
+            "text": "Both iRobot and Ecovacs approached the problem by utilizing changing and disappearing UI. This specifically caused a lot of upset and confusion for iRobot's fan base. Numerous complaints about the disappearing \"empty bin\" button were filed in the app store and social media outlets."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/ecovacs.png",
+            "alt": "Two mobile screens show the robot vacuum's mapping mode:\nScreen 1 (left): Displays a mapping interface where the robot is cleaning a 54 square foot area in 3 minutes, with 0 obstacles avoided. Buttons at the bottom allow the user to set cleaning preferences or empty the dust bin.\nScreen 2 (right): Similar layout but with a pause button in the middle to control the cleaning operation. The area cleaned is still 54 square feet with a 3-minute duration.",
+            "row": 2
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/irobot.png",
+            "alt": "A set of three mobile screens for a Roomba robot vacuum:\nLeft: Indicates the vacuum is \"Ready to vacuum\" with an \"Empty Bin\" button.\nMiddle: Shows the robot in \"Vacuuming\" mode with the option to pause.\nRight: Displays the vacuum in a paused state with a button to \"Send home.\"",
+            "row": 2
+          },
+          {
+            "type": "text",
+            "text": "The general consensus after reviewing competitors is that these bases were viewed as accessories and not their own units. It was also apparent from my research that I definitely needed to avoid disappearing UI when the robot was off base.\n\nAdditional opportunities I found in my research were:\n• In future iterations of the base ID, we should move the LED from the back to the front to improve feedback\n• There was a need for both user control and complete robot autonomy when it came to emptying the dustbin; we needed to provide manual options to the users, and also have the robot know when to empty its own bin"
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Preliminary UI Designs",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "I started iterating on how I could address the issues that surfaced from my research (mainly focusing on avoiding disappearing UI)."
+          },
+          {
+            "type": "text",
+            "text": "V1: Sheets!\nI did a lot of iterations trying to utilize overlapping sheets. The main idea was that the Clean Center sheet would disappear below the fold when the robot was cleaning. This was a more graceful approach to disappearing UI. However, this is a pattern that literally doesn't exist anywhere, so ultimately I decided to ditch it."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Sheets.png",
+            "alt": ""
+          },
+          {
+            "type": "text",
+            "text": "V2: Utilizing map UI\nNext, I tried some iterations using the map UI and dock icon. Our team had been experimenting with ways to make the map more interactive, using layers and letting users select zones directly. This method for Clean Center was a bit too hidden and would rely too much on our instructional screens."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-4_1.png",
+            "alt": "A sequence of screens showing a setup process for both the robot and the base unit, including options to set up only the base. Several stages of setup are depicted with different screens, such as connectivity steps, cleaning system instructions, and base and filter status screens. The flow provides instructions for setting up either the robot or the base independently."
+          },
+          {
+            "type": "text",
+            "text": "V3: Integrating with robot controls\nLastly, I tried emphasizing the base as an accessory by adding the base controls to the robot control sheet. While not necessarily ideal, this placement was easiest to understand and access. Some variations of this included a \"dashboard\" of sorts, that would appear when the robot was placed on the base."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/v1.gif",
+            "alt": "A GIF of the lower map UI shrinking to fit the new base UI while the base is connected to the robot. The UI is split into two columns, one for robot controls, and one for base controls.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-3_3.png",
+            "alt": "This image shows four mobile screens from the Neato robot vacuum app, detailing the Clean Center status and user interactions:\nScreen 1 (far left): The robot is shown as \"Docked\" with 100% battery. The main action button says \"Empty dirt bin.\" There is an option to toggle \"Auto empty\" on or off. Below, the app displays information about the robot's clean center status, which the user can tap for more details.\nScreen 2 (second from left): Similar to the first screen, but it adds a red alert icon, indicating that the filter bag is \"Completely full.\" The blower filter status remains \"Okay,\" with a green checkmark. The error message prompts the user to resolve the issue before proceeding.\nScreen 3 (third from left): The user is in the Clean Center screen, where they see detailed information about the filter bag being full, and the blower filter showing \"Okay.\" The auto empty toggle remains on, and the serial number of the robot is displayed at the bottom.\nScreen 4 (far right): Similar to the third screen, but this screen shows the filter bag status as \"Completely full\" with an additional critical alert indicating that the bag must be replaced for the robot to continue functioning. The user is prompted to replace the filter bag.",
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Addressing Errors & Alerts",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Although Clean Center was an accessory, it came with its own errors and alerts that somehow needed to be distinguished from Robot errors and alerts. Robot messaging was currently being shown at the uppermost level as a yellow or red gradient:\n\nEarly explorations included selling robot errors as base errors, using phrasings like \"my base is full,\" etc. Eventually, after some quick user tests, I opted into keeping base errors separate. The notification would be at the upper level, while more detailed information about the error would be nested."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Error.png",
+            "alt": "A mobile screen with an error alert at the top of the interface:\nThe screen shows a Neato robot vacuum with an error message: \"Dirt bin open.\" A visual cue is given with the alert marked in orange."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-1.png",
+            "alt": "A sequence of two mobile screens showing the error notification flow:\nLeft: The app informs the user of a \"Dirt bin open\" issue, which requires action.\nRight: Shows a detailed status for Clean Center, including full filter status and serial number. The user can resolve the issue by replacing the filter bag."
+          },
+          {
+            "type": "text",
+            "text": "Since only one error could be surfaced at the top level, I needed to define a hierarchy. Hard errors would take precedence over fullness and maintenance alerts.",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-2.png",
+            "alt": "This image displays a mobile app interface showing the Clean Center screen of a Neato robot vacuum:\nLeft screen: Displays the robot's status with the \"Empty dirt bin\" option.\nMiddle and right screens: Show a hierarchy of errors, such as filter bag full and blower filter status. The system prioritizes \"hard errors\" (e.g., critically full errors) over lower-priority alerts."
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "LED & Audio Behaviors",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Since Clean Center didn't have any outward facing LEDs, our options were to utilize the robot's LEDs and audio or nothing at all. Product managers requested to use the robot's LEDs. The info (\"i\") button became a dead button after robot setup, so I took advantage of it. When the robot was placed on the Clean Center, the info button would show the current status. This would reflect for base errors as well."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/extracting.gif",
+            "alt": "This image shows a Neato robot alongside details about its extraction process:\nLeft box: Lists events and states (e.g., Standby or Docked at the Charge Base), LED statuses for Wi-Fi, battery, play button, and info button (pulsing or sustained white light), and the audio cue \"Emptying my dirt bin.\"\nRight side: Image of a Neato robot vacuum.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/critical.gif",
+            "alt": "A close-up image of a cleaning base unit with associated status information. The text indicates that the base is critically full. There is a description of LED light indicators, Wi-Fi connectivity status, and play button colors, with the info button flashing red. The audio message displayed informs the user that the filter bag is completely full and needs replacing.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame.png",
+            "alt": "A table displaying statuses related to a robot cleaning base. The table includes information on the base's status (fullness, extraction), robot status (docked or cleaning), and associated LED and audio indicators. For example, when the base is less than 80% full, the info button shows green with a steady white LED, and an audio file may inform the user that the filter bag is in need of replacement."
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Setup Flow",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Once everything else was set in stone, I was able to work on the setup flow. I had to design two flows, for when a user bought the base with the robot or separately. (The robot setup flow was already defined, and the base's setup flow just needed to be integrated.)\n\nThe tricky part was determining when Clean Center's UI would appear and trying to avoid disappearing UI.",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-6_1.png",
+            "alt": "A flowchart outlining the interaction steps for a user purchasing a new robot base. The process starts with placing the robot on the clean center for the first time, which triggers a user interface. It then evaluates whether the robot begins cleaning, or displays different outcomes based on whether the clean center is properly enabled or the robot returns."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-4_1.png",
+            "alt": "A sequence of screens showing a setup process for both the robot and the base unit, including options to set up only the base. Several stages of setup are depicted with different screens, such as connectivity steps, cleaning system instructions, and base and filter status screens. The flow provides instructions for setting up either the robot or the base independently."
+          },
+          {
+            "type": "text",
+            "text": "This also included defining and animating a visual Quick Start Guide for base setup:"
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/579129131",
+            "portrait": false
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Final Design and Delivery",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Page-Anatomy.png",
+            "alt": "The interface displays a floor plan with labeled rooms like kitchen, bedroom, and bathroom. The center shows a cleaning robot’s status as docked and its battery level (100%). The interface allows the user to locate the robot, start/stop cleaning, or change modes. Below is a status related to emptying the dirt bin. Icons indicate the current status of the base as docked, and another panel allows for maintenance tasks such as replacing filter bags and cleaning blower filters. Status icons indicate \"okay,\" \"full,\" or \"needs cleaning.\""
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-hardware/Frame-5_2.png",
+            "alt": "A large image showing user flows for the new self cleaning base. There is a column for subsequent cleans and another for errors. Each flow shows the user journey step by step, and includes annotations for LED state ux for the hardware."
+          }
+        ]
+      }
+    ]
+  },
+  "neato-default-screen": {
+    "company": "Neato Robotics",
+    "title": "Default & Cleaning Screens",
+    "intro": "One of the biggest challenges at Neato was solving what would go on the \"Default\" and \"Cleaning Run\" screens- the screens that would show before a user's first run and when the robot is completing a cleaning run. I was tasked with designing and animating something that would engage users in both of these stages.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Competitor Analysis, User Testing, After Effects, Unity, Cinema4D"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer & Animator"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Create an intriguing yet informational user experience before the first time cleaning run when a map will be generated\n• How to compensate for our robot not having real-time-mapping features"
+      }
+    ],
+    "hero": {
+      "src": "/media/neato-default-screen/default.png",
+      "alt": "This screen displays the robot setup with a clear prompt: \"Pick up small objects and loose cords before starting a clean.\" The robot model (Neato D10) is shown, and buttons for \"Locate,\" \"Play,\" and \"Mode\" are available below, with additional details about the robot's status and battery life."
+    },
+    "toc": [
+      {
+        "href": "#RealTimeMapping",
+        "label": "1. Real Time Mapping"
+      },
+      {
+        "href": "#CompetitorAnalysis",
+        "label": "2. Competitor Analysis"
+      },
+      {
+        "href": "#Interactive",
+        "label": "3. V1: The Interactive Approach"
+      },
+      {
+        "href": "#Informational",
+        "label": "4. V2: The Informational Approach"
+      },
+      {
+        "href": "#User-Testing",
+        "label": "5. User Testing"
+      },
+      {
+        "href": "#Final",
+        "label": "6. Final Revisions"
+      }
+    ],
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Real Time Mapping",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Initially, I was only tasked with designing an animation for the empty state of the home screen that would be replaced after a map was generated.\n\nThe \"North Star\" cleaning run experience that we designed included a Real Time Mapping feature; the robot would show its location and generate a map in real time during the first cleaning run.\n\nThis was quickly ruled out as not in scope for release. The absence of this content brought up the new challenge of designing a placeholder animation until real time mapping was in scope."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-default-screen/real-time-map.gif",
+            "alt": "A GIF of a map being generated by a robot vacuum in an app UI. The UI shows the transition from pause to play, and shows that the robot's name is Roberto Ostinelli. The robot is currently cleaning its first clean.",
+            "phone": true
+          }
+        ]
+      },
+      {
+        "id": "CompetitorAnalysis",
+        "title": "Competitor analysis",
+        "layout": "horizontal-media-first",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/neato-default-screen/competitors.png",
+            "alt": "A high level screenshot of two tables. One shows \"before clean\" and the other shows \"during clean.\" The tables' cells are colored yellow, green, or red to distinguish if a feature is available in the app.\nBelow are during and before cleaning screenshots from mobile apps from the companies Roborock, ecovacs, iRobot, and Neato Robotics"
+          },
+          {
+            "type": "text",
+            "text": "With two problems to account for, I started analyzing our competitors. What did we use in our old app? Who had Real Time Mapping? What were our competitors using when they didn't have Real Time Mapping? Are these placeholder videos valuable to their users?\n‍\nTwo of our competitors had Real Time Mapping. Our old app and iRobot did not. Overall, it seemed like the information provided before and during the cleans without Real Time Mapping were not very interesting or informational to the user. This seemed like an opportunity."
+          }
+        ]
+      },
+      {
+        "id": "Interactive",
+        "title": "V1: The Interactive Approach",
+        "layout": "aside",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Real Time Mapping is in itself a unique interactive experience. You can watch your whole house be built on a screen by a tiny robot! It's cool! It's interesting! And we didn't have it. How can we still provide this exciting experience?\nAfter brainstorming for a while, I threw out the idea for a minigame. I had game design experience, and to make a small endless runner that provided cleaning tips to the user would be simple to code."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-default-screen/Frame-11.png",
+            "alt": "Five mobile screens present a gamified approach to cleaning:\nScreen 1 (left): Shows a robot in cleaning mode with a \"Pause\" button.\nScreen 2 (middle): Displays a countdown with instructions to \"Tilt your phone to pick up all the floor filth.\"\nScreens 3-5 (right): Show the gameplay, with the robot picking up various small objects on the floor like food crumbs and toy pieces."
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/520453645",
+            "portrait": true,
+            "aside": true,
+            "phone": true
+          }
+        ]
+      },
+      {
+        "id": "Informational",
+        "title": "V2: The Informational Approach",
+        "layout": "stack-row",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Okay, maybe a game isn't the best idea. Back to square one. I went through endless iterations trying to create a perfect cleaning run video that provided informational messaging to the user. We can at least make the wait time of a cleaning run valuable, right?\n‍\nNext, time to decide what will play during an actual cleaning run. Unlike the default screen, this video would be shown during every cleaning run until Real Time Mapping is implemented. The team decided to use this time as an opportunity to give users helpful hints."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-default-screen/story.png",
+            "alt": "This image shows a sequence of six mobile screens documenting the robot's mapping process:\nTop row: Starts with the robot generating the first map, with various stages of map visualization, from a basic outline to a more detailed room map.\nBottom row: Displays close-up views of the robot scanning furniture and objects, eventually generating a full map of the space."
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/520450748",
+            "portrait": true,
+            "phone": true
+          }
+        ]
+      },
+      {
+        "id": "User-Testing",
+        "title": "User Testing",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "We finally nailed down a design and animation. Time to user test. We integrated testing of the default and cleaning animations into our July user testing.\\n\\nWe asked our participants what their first impressions of the default screen were. The animation was successful; all 5 participants understood that objects needed to be picked up before a cleaning run."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-default-screen/Frame-6.png",
+            "alt": "User Feedback and Clean Start Screen A mobile screen on the left shows a prompt to \"Pick up small objects and loose cords before starting a clean,\" with a robot image and a \"Start\" button below. To the right is a user comment from \"Techie\" explaining that based on personal experience, they would pick up larger objects like chairs to ensure the vacuum gets to where they want it to go."
+          },
+          {
+            "type": "text",
+            "text": "Unfortunately, the Cleaning Run Video was not as successful. Only 1 of 5 participants noticed the information bubbles throughout the video. The participants understood that the video was not a live feed of the robot mapping, but there was confusion about the fidelity and color of the map, especially when the final map was presented at the end of the cleaning run."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-default-screen/Frame-3_1.png",
+            "alt": "Screen 1 (left): A \"Generating map\" screen shows the progress of the robot creating a map, with some areas colored in red and orange. A \"Pause\" button is available at the bottom.\nScreen 2 (right): Displays the completed robot map, now more detailed, with user comments on the side. The comments mention assumptions that the vacuum is running around the room, confusion about pixelation, and how the generated map looks very different from the animation."
+          }
+        ]
+      },
+      {
+        "id": "Final",
+        "title": "Final Revisions",
+        "layout": "stack-row",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "I reviewed the User Study feedback with stakeholders. The informational content was completely overlooked by participants, and would be seemingly redundant if played for every cleaning run. After some discussion, we decided to readdress the aesthetic of the animations and go for a more minimal approach. We would keep the default screen informational content, but opt for a simple animation of the robot during cleaning runs."
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/518851843",
+            "portrait": true,
+            "phone": true
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/520451201",
+            "portrait": true,
+            "phone": true
+          }
+        ]
+      }
+    ]
+  },
+  "xr-prototyping": {
+    "title": "XR Prototyping",
+    "intro": "XR is a magical space to work in, and most of the time, Figma flows just don't show the magic. The solution? Interactive prototypes!\n\nThis is a couple of the [disclosable] prototypes that I've built through the years to compliment UX flows and bring the possibilities of XR to shareholders.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Unity, C#, Cinema4D, MRTK"
+      }
+    ],
+    "hero": {
+      "src": "/media/xr-prototyping/quest.0001.png",
+      "alt": "A 3D model of a generic virtual reality headset with 3D models of 2 gears behind it"
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Data Analysis",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "How does a user utilize VR and AR to heighten their data experience?"
+          },
+          {
+            "type": "text",
+            "text": "Designed and built graph in Cinema 4D, utilized MRTK and Unity to import and create interactive graph. The goal of this experiment was to see how data could be translated through AI into a visual representation that's more digestible for users."
+          },
+          {
+            "type": "image",
+            "src": "/media/xr-prototyping/364816452_1433595800543602_6438888323562932114_n.png",
+            "alt": "",
+            "row": 1
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/850760341?h=caa5268946",
+            "portrait": false,
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Immersive Environment",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "How does a user immerse themselves in a custom environment?"
+          },
+          {
+            "type": "text",
+            "text": "Designed the immersive environment and mini model in Cinema 4D, and built the widget in Unity. Worked alongside engineers to optimize the immersive environment polys for Quest 2."
+          },
+          {
+            "type": "image",
+            "src": "/media/xr-prototyping/364153314_242374952075362_5144594482805237014_n.png",
+            "alt": "A stylized 3D model of a butterfly garden",
+            "row": 1
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/850771186?h=d67768e0e3",
+            "portrait": false,
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "TellSenseXR",
+        "title": "TellSense concept",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "How can we utilize HoloLens2 to provide additional sensory output from stagnant objects?\n\nUtilized MRTK3 and Vuforia engine to detect images in a space, and launch additional, interactive information like GIFS, music, 3D models, and videos."
+          },
+          {
+            "type": "image",
+            "src": "/media/xr-prototyping/Aug-05-2023-19-57-27.gif",
+            "alt": ""
+          }
+        ]
+      }
+    ]
+  },
+  "skiddy-kitty": {
+    "company": "Skiddy Kitty",
+    "title": "Game Design & Animation",
+    "intro": "Skiddy Kitty is a passion project that I began as my entryway into game design and development. Initially started as satire, the game is an endless runner based on my cat and her- um- bad grooming habits. I created the project from start to finish, including UX Research, UX design, graphic design, animation, modeling, and game design. A beta release will be available soon.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "C#, Unity, Maya, Figma"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer & Animator"
+      },
+      {
+        "label": "Challenges",
+        "value": "•Taking a commonly used game style and innovating it enough to make it an enjoyable experience for the user\n•Overall gameplay, user flows, and general behaviors"
+      }
+    ],
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Research",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "I audited several viral mobile games to get a sense of art style and content. By comparing pros and cons of each app, I was able to formulate a survey to get a sense of how Skiddy Kitty would compare to these large-scale apps. Unfortunately there was a small turnout for the survey, but enough data was collected to discover that endless runners are still very popular in the mobile app world, right next to puzzle games. This discovery was definitely a comfort, but I still needed to design something that stood out among the many, MANY endless runners in the app store."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/Frame-8-1.png",
+            "alt": "Left side: A survey form with the title \"Skiddy Kitty User Study\" and a logo featuring an orange cat. The form includes questions about age range, frequency of play, preferences, and suggestions for improvement.\nRight side: A flowchart spread across three panels. The flowchart has labeled sections such as \"Monsters,\" \"Outfits,\" \"Gameplay,\" \"Devils,\" \"Skills Store,\" \"Money,\" \"Tutorial,\" \"Win/Loss Logic,\" and \"End of Game Player Stats.\" Each section includes screenshots or thumbnails of the app’s interfaces, connected with arrows to illustrate navigation paths or stages within the user experience. The flowchart is color-coded, with different areas shaded in pink, purple, and orange to group related sections together."
+          }
+        ]
+      },
+      {
+        "id": "Interactive",
+        "title": "Wireframing & Initial Flows",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Taking what I learned from my research, I began wireframing the design of the game. I followed the standard design structure for endless runners. I knew my idea for the game was original, but the challenge was figuring out how to make the gameplay different for users. Endless runners can get redundant pretty quickly, so where was the challenge in this game? I decided to up the stakes of the game by making tuna (coin) collection mandatory. If a user stops collecting tuna, their lifespan significantly drops."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601ca78bd68fe268189a25dd_Frame-6.png",
+            "alt": "Wireframe depicting a mobile app flow with multiple screens. The first screen shows a list of 'quests' or 'missions' with several buttons, possibly for different actions like 'view' or 'start.' The second screen seems to be a 'Create New' or 'Select Character' interface, with a large button for selecting or creating a new character and fields for inputting data. The third screen looks similar, but more focused on finalizing the character or game setup with options to save or load. Next is an 'Options' screen with various toggles and settings for sound, notifications, and other configurations. The subsequent screens appear to be related to the gameplay or quest progression, with a grid layout of boxes or placeholders, which could represent challenges or levels, and detailed views of each challenge."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/Meter-flows.png",
+            "alt": "Flowchart showing the steps in a user process. The chart starts with a decision point labeled 'User presses play,' leading to multiple actions and decisions. It includes steps like 'Check save data' and decisions regarding whether a user has created a save or not, followed by conditional branches that check if the save exists, is verified, or needs to be created. The chart follows through to subsequent steps, with decisions determining if the user can proceed or needs to go through further actions such as typing in data, fixing errors, or reloading saves. The final step seems to conclude with either the success of the process or triggering some kind of an error or fallback."
+          }
+        ]
+      },
+      {
+        "id": "Informational",
+        "title": "Implementation",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Okay, maybe a game isn't the best idea. Back to square one. I went through endless iterations trying to create a perfect cleaning run video that provided informational messaging to the user. We can at least make the wait time of a cleaning run valuable, right?\n‍\nNext, time to decide what will play during an actual cleaning run. Unlike the default screen, this video would be shown during every cleaning run until Real Time Mapping is implemented. The team decided to use this time as an opportunity to give users helpful hints."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601ca7b0089b68fd4f5007e6_Screen-Shot-2020-09-27-at-6.33.png",
+            "alt": "Screenshot of a Unity game development environment. The left side shows the Unity editor's hierarchical structure, including a detailed list of game objects and assets in the project. In the center, a 3D scene is visible with a cat character facing a wall or barrier, alongside directional lighting represented by a sun icon. The game view is open on the right side, showing the cat from a third-person perspective, similar to a gameplay preview. The game HUD displays a score of 0, and there’s a vertical progress bar on the right. The bottom panel shows a collection of assets, such as textures, prefabs, and other objects used within the game."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Prep for Beta Release & User Testing",
+        "layout": "gallery",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "With designs finalized, Skiddy Kitty is nearing its beta release and user testing phase. Future updates will be recorded here!"
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601ca7ba3bea527beec6e966_Group-126.png",
+            "alt": "This screen features the title \"Skiddy Kitty\" with a cute cartoon cat sitting at the bottom. A large \"Skid!\" button is in the center, presumably to start the game or an action. Below the button, three additional options are available: \"Change Pet,\" \"Poopy Power,\" and \"Stats,\" each with corresponding icons. The top-right corner includes a settings gear icon, while the top-left has a profile picture."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601ca7ba3bea525befc6e95d_Tuna.png",
+            "alt": "This screen shows various in-app purchase options labeled \"More Tuna!\" with prices in USD. Different packs include 1,000 Tuna for $0.99, 5,000 Tuna for $1.99, 10,000 Tuna for $3.99, 50 Mice for $1.99, 100 Mice for $4.99, and 1,000 Mice for $10.99. Each option is displayed with icons of fish or mice along with a price, and the total available currency is displayed at the top."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601ca7ba3bea520af9c6e960_Group-127.png",
+            "alt": "In this screen, the player controls a corgi, seen from a third-person perspective, running on a wooden floor inside a room with furniture. The screen shows a score of 0 at the top and an empty vertical progress bar on the right side. There is a table visible in the room, and a trail of items (fish) appears ahead of the cat."
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601ca7ba3bea529ef9c6e963_Tuna-1.png",
+            "alt": "This screen is similar to Screen 3 but from a slightly different angle, showing a wider room view. A potted plant is visible in the foreground, and fish icons are scattered across the room for collection. The score at the top is still 0, and the progress bar is shown on the right."
+          }
+        ]
+      }
+    ]
+  },
+  "neato-animations": {
+    "company": "Neato Robotics",
+    "title": "App Animations",
+    "intro": "Design and implementation of micro-animations and instructional videos throughout the MyNeato App. The requested elements included bottom navigation, play/pause buttons, deletion behaviors, scrolling behaviors, and mockups of movements to hand off to developers.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "After Effects, Cinema 4D, Bodymovin, Lottie"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer & Animator"
+      }
+    ],
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Gallery",
+        "layout": "gallery",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/neato-animations/601c3be7856c5f49d02eecfb_robotmanagement.gif",
+            "alt": "A GIF showing transition animation when a user clicks into a card for their robot. The card shows high level information like robot name and upgrades. When the user clicks in a list of information about the robot appears."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-animations/601c3be7856c5fbe972eecfd_scroll.gif",
+            "alt": "A GIF of the MyNeato Routines page to show the scrolling effect of the page."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-animations/601c3be7856c5f15a92eecf7_delete2.gif",
+            "alt": "A GIF showing the \"select all\" function, which brings up checkboxes for each notification to select and delete."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-animations/601c3be7856c5f23de2eecf9_delete1.gif",
+            "alt": "A GIF showing slide left to delete notifications"
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/518851099",
+            "portrait": true
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/518851256",
+            "portrait": true
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/522164588",
+            "portrait": true
+          },
+          {
+            "type": "video",
+            "src": "https://player.vimeo.com/video/518851843",
+            "portrait": true
+          }
+        ]
+      }
+    ]
+  },
+  "neato-user-testing": {
+    "company": "Neato Robotics",
+    "title": "July 2020 User Testing",
+    "intro": "During the first phases of the MyNeato app, our UX team began user testing the initial flows of the app. The feedback from the tests proved to be crucial, and impacted the designs of the app drastically.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Optimal Workshop, Figma, Powerpoint, Vectornator"
+      },
+      {
+        "label": "Role",
+        "value": "Notetaker, Facilitator"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Validate if the design intent of the first cleaning run aligns with user expectations\n• What do users think about the fidelity of robot-created maps?\n• What kind of information should be prioritized in the robot controls?\n• How do users interpret zones and what tooling methods do they prefer to create them?"
+      }
+    ],
+    "hero": {
+      "src": "/media/neato-user-testing/Group-2453.png",
+      "alt": "This image shows five user profile pictures with nicknames and roles:\n\"Busybody,\" \"Techie,\" \"Pet lover\" (two users with this title), and another \"Busybody.\" Each user has a circular profile image and is tagged with their roles, representing different user personas in the testing or design feedback process."
+    },
+    "sections": [
+      {
+        "title": "Recruitment & Methodology",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Participants were recruited via social media. All participants were current robot owners that fit our company user personas.\nAfter having our participants sign an NDA, we had them fill out a pre-session survey to understand a little bit more about them and their backgrounds.\n\nWe held five remote interviews over a course of three days. We used a combination of survey, observation, moderated concept testing, and card sorting using the Think-Aloud Protocol to determine study results. In each session, our team of three took turns facilitating, note taking, and observing.\n\nMetrics used in this study were:\n• # Shared expectations\n• # Unintended actions\n• # Times users asked a question"
+          }
+        ]
+      },
+      {
+        "title": "Concept Test 1",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "We presented three videos to our users:\n• First clean screen & animation\n• First cleaning flow\n• Robot control sheet content"
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-05-at-9.19.38-PM.png",
+            "alt": "This image shows three mobile phone UI screens labeled A, B, and C:\nA (First clean screen): Displays a message prompting the user to pick up small objects before starting a clean with a prominent button labeled \"Start.\"\nB (First cleaning flow): Displays a cleaning progress screen with a pause button and a visual of cleaning status.\nC (Bottom sheet content): Shows additional content or options at the bottom, prompting the user to make selections before starting a clean."
+          }
+        ]
+      },
+      {
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Our goals of showing users the first clean screen were to understand if the screen satisfied the design intent:\n‍\n• Inform the user to pick up objects that the robot might get stuck\n• To know how to start the robot\n• To know if users know that their first clean will generate a map",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Frame-5_1.png",
+            "alt": "This image shows two user quotes from \"Pet lover\" and \"Techie.\"\nPet lover: The user expresses confusion about the term \"your first map\" and says they would click on \"My Maps\" to investigate further, but remains unsure.\nTechie: The user is confused by a search bar at the top of the screen, questioning its relevance if it’s not a search bar and suggesting it should be removed if unnecessary.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Default-State-Mockup.gif",
+            "alt": "",
+            "row": 1
+          },
+          {
+            "type": "text",
+            "text": "The most important feedback from this study was that the top navigation was misunderstood from a search bar, and that the information button did not reinforce the expectation that a map would be generated at the end of the cleaning run. Fortunately, all participants understood that the robot needed to start from the base and that they should pick up objects before starting a clean."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Group-1.png",
+            "alt": "A table lists participants' feedback based on three criteria: 1) number of expectations matching the design, 2) number of actions not intended with design intent, and 3) number of times the user asked a question to clarify functionality. Each participant (Abram, Pixie, Krystle, Jonah, Andy) has a corresponding score under each column, with detailed feedback underneath. The feedback describes their understanding of tasks like starting the robot, identifying objects, or interpreting map functions, and lists any actions that diverged from design expectations."
+          }
+        ]
+      },
+      {
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "For this task, we showed participants a series of screens and animations and asked them to describe what their impressions are when they reached the last screen.",
+            "fullWidth": true
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.07.40-PM.png",
+            "alt": "wo mobile screens show the user interface for both Vectornator and PowerPoint:\nVectornator (left): Features a polygon-shaped no-go zone being drawn with precision points.\nPowerPoint (right): Shows basic shapes (e.g., squares and lines) that can be added to the map."
+          },
+          {
+            "type": "text",
+            "text": "From this study, we learned that the rendered map in the video was causing confusion about the fidelity of the robot-generated map. 4/5 of the participants expressed that they didn't understand the map pixelation of the generated map and that it looked incomplete."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Group-2455.png",
+            "alt": "A screenshot shows a user map generation process, accompanied by a user quote:\nA user labeled as \"Busybody\" comments, \"The picture [generated map] looks very different than the animation.\"\nThis feedback is likely referring to discrepancies between the user's expectations and the actual generated map in the robot cleaning app."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.30.15-PM.png",
+            "alt": "This table is similar to the first expectation table, showing participant feedback for five users (Abram, Pixie, Krystle, Jonah, Andy). It is broken into three categories:\nNumber of expectations matching the design.\nNumber of actions not intended with design intent.\nNumber of times the user must ask a question to the facilitator to clarify functionality.\nEach participant has detailed comments, explaining their thought processes, errors, or confusion related to the robot map design."
+          }
+        ]
+      },
+      {
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "We gave participants various cards in Figma and asked them to choose the four that they welt would be the most important to see displayed in the bottom sheet and why. Each card was either floorplan-centric (information related to the user's floorplan) or robot centric (information or controls for the robot)."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.35.50-PM.png",
+            "alt": "This image displays a mobile phone screen on the right showing a cleaning robot interface and a set of purple boxes on the left listing potential data points:\nRobot model, Robot Name, Floorplan Name, Floorplan Square Footage, Robot Status, Area Robot Has Cleaned, Robot Battery Life, Cleaning Time, and Robot Cleaning Mode.\nThe diagram suggests what information users might want to see on the robot app interface."
+          },
+          {
+            "type": "text",
+            "text": "All 5 participants primarily chose robot-centric cards! All users explained that their reasoning was that the robot-centric cards are more useful for cleaning status and setting up cleaning runs."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.38.00-PM.png",
+            "alt": "A table showing rows with various categories of robot status information, including:\nRobot name/model\nRobot battery life\nCleaning time\nRobot cleaning mode\nRobot status\nFloor plan name\nArea cleaned by the robot\nFloor plan square footage\nEach row has small user profile pictures of participants linked to the respective robot information."
+          }
+        ]
+      },
+      {
+        "title": "Concept Test 2",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Concept test 2 focused on map editing and tooling expectations."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-10-at-3.01.07-PM.png",
+            "alt": "This image contains two mobile phone screenshots:\nA (Map editing expectations): Shows a map of a home layout with labeled rooms and a large button at the bottom right labeled \"Start.\" It aims to understand how users expect to edit their maps.\nB (Testing editing tools): Shows two different tools: PowerPoint and Vectornator. The user interface focuses on selecting and shaping map areas, using vector shapes and editing features to test user intuition with the tools."
+          }
+        ]
+      },
+      {
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "We provided users with two screenshots of the app, and asked them their expectations on what they would do on these screens and how they would go about editing their maps.\n\nOur main goals of this study were to find out what capabilities and tooling users expect to have during map editing, and if they think about rooms and zones differently.",
+            "fullWidth": true
+          },
+          {
+            "type": "text",
+            "text": "Editing the map proved to be a natural next step for users after seeing their map being generated. All users noticed the option to edit their map. Interestingly, one user said he wouldn't want to spend time editing the map.\n\nAfter seeing the editing mode screen of the map, participants brought up these key factors:\n\n• There was a desire to edit things on the map other than rooms (like completing wall segments, adding furniture, etc.)\n• No-go zones would be the most important editing feature\n• Users want the ability to control how many times the robot cleans a specific area on the map\n• There is an expectation to be able to name rooms and identify those areas on the map\n• The term \"Zones\" was interpreted as something that is a collection of rooms"
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.42.06-PM.png",
+            "alt": "Two mobile screens show a completed map generated by the robot vacuum:\nScreen 1 (left): A prompt at the top says, \"Begin editing your map,\" encouraging the user to start making changes.\nScreen 2 (right): A map with no-go zones added, offering an interface for making more specific adjustments."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Group-2458.png",
+            "alt": "Two user quotes:\nPet lover: Mentions a desire for more control over how many times the vacuum covers an area and how vigorously it cleans.\nTechie: Expresses a desire to name rooms, straighten lines, and place obstacles for the robot."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.55.01-PM.png",
+            "alt": "This table compares the feedback from participants (Abram, Pixie, Krystle, Jonah, and Andy) regarding their expectations for map and zone editing in the robot cleaning app. Columns include:\nNumber of times user expectations did not meet design intent.\nNumber of times the user thinks about zones together or separately.\nCommon tooling associated with editing rooms and zones."
+          }
+        ]
+      },
+      {
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "We asked participants to download two mobile apps, Vectornator, and Powerpoint. We gave them minimal direction in both apps, and told them to create zones on the displayed map while following the \"Think Aloud\" protocol.\n\nOur goal was to understand if users find it more difficult to use a shapes library or create zones with a pen tool."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.07.40-PM.png",
+            "alt": "wo mobile screens show the user interface for both Vectornator and PowerPoint:\nVectornator (left): Features a polygon-shaped no-go zone being drawn with precision points.\nPowerPoint (right): Shows basic shapes (e.g., squares and lines) that can be added to the map."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.09.57-PM.png",
+            "alt": "This image displays a similar map editing process, but in the Vectornator tool. A curve and nodes are being drawn on the map. \"Abram Lopez\" appears in a small video call window in the corner, indicating a live testing session.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.09.29-PM.png",
+            "alt": "This image shows a user editing a robot cleaning map in PowerPoint. A rectangle shape is added to the map, and a user named \"Abram Lopez\" appears in a small video call window in the corner, possibly for testing or feedback purposes.",
+            "row": 1
+          },
+          {
+            "type": "text",
+            "text": "Overall, participants were frustrated with the pen tool and leaned towards using a tap and drag or drawing motion. The shapes library task was completed the quickest and most accurately."
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Screen-Shot-2021-03-06-at-3.07.43-PM.png",
+            "alt": "A table compares user feedback across two tools (Vectornator and PowerPoint). The table is broken down into:\nNumber of unintended results surfaced: Users like Abram, Pixie, Krystle, Jonah, and Andy highlight challenges such as difficulties with shapes, drawing, and fixing points.\nNumber of questions to clarify tool usage or guidance: Minimal clarification needed, with notes on specific user struggles, such as with dotted lines or resizing shapes."
+          }
+        ]
+      },
+      {
+        "title": "Final Result",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "After synthesizing the data from this user study, it was clear that we needed to do the following:\n\n• Update the UI for the first time screen and flow to address participant issues\n• Adjust the animation based on the feedback we received\n• Display robot-centric information in the robot bottom sheet and designing it to include the highest voted content\n• Work with the scrum team to improve map rendering quality\n\nOur flows and designs were drastically changed based on this user test. Our final revisions are as shown:"
+          },
+          {
+            "type": "image",
+            "src": "/media/neato-user-testing/Frame-3_2.png",
+            "alt": "Three mobile screens:\nScreen 1: The interface prompts the user to \"Remove small objects and loose cords before starting a clean\" with an image of a robot vacuum and various objects. Buttons below the image allow the user to \"Locate,\" \"Start cleaning,\" and view \"Modes.\" The status shows the robot is docked.\nScreen 2: Shows the robot vacuum in cleaning mode with buttons to pause or stop cleaning. The status displays as \"Cleaning.\"\nScreen 3: Displays the map of a house with different rooms, and an option to \"Add No-Go Zone\" at the bottom."
+          }
+        ]
+      }
+    ]
+  },
+  "notification-center": {
+    "company": "Neato Robotics",
+    "title": "Default & Cleaning Screens",
+    "intro": "I was tasked with designing and delivering the specs for the notifications page of the MyNeato App. I designated happy path flows and corner cases, then delivered to the Neato development team.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Figma, Appbot, Competitor Analysis, Zeplin"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Creating a scalable design that will be able to support future iterations of the app with multiple robots and devices• What do users think about the fidelity of robot-created maps\n• Designing a method of communication that is accessible to all users"
+      }
+    ],
+    "hero": {
+      "src": "/media/notification-center/Group-2969.png",
+      "alt": "This mobile screen shows a notifications page in the robot cleaning app:\nThe top section categorizes notifications by date (e.g., \"Today,\" \"Yesterday\").\nThe alerts include messages for brush errors, replacement needs, and promotional offers from Neato, with options to reset or view more information."
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Research",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "I utilized Appbot and Competitor Analysis' to get an idea of patterns that are typically used in notification pages. The challenge with Neato was designing for future iterations in which a user might be able to receive messages from multiple sources. Should all notifications be shown in the same area? In the end, I decided to keep the notifications section as simple as possible, showing all messages on the same page with simple delete options."
+          },
+          {
+            "type": "image",
+            "src": "/media/notification-center/Notifications-researcdh.png",
+            "alt": "This image compares different messaging systems (e.g., Facebook Messenger, iMessage) with a table that organizes notifications and how they appear across platforms. It provides insights into the structure and timing of various notification types in these messaging apps."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "North Star Design & Flow Creation",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "I explored a few formatting options in my north star designs, but most followed the typical list format that users see in Facebook apps. Unfortunately these designs did not solve the problem of multiple devices (and overall clashed with the existing design of the app). The final designs became more of a reflection of messages from the device itself, utilizing chat bubbles. This way, a user is easily able to tell device messages apart via the profile icons on the left. Once the designs were finalized, I specified flows for our development team."
+          },
+          {
+            "type": "image",
+            "src": "/media/notification-center/northstar.png",
+            "alt": "This image illustrates multiple variations of notifications, including a visual comparison of alerts for maintenance, errors, and promotions across several mobile screens.\nThe bottom section displays flowcharts and layouts mapping out how auto-maintenance reminders, general alerts, and bonuses are handled in the app's notification system."
+          },
+          {
+            "type": "image",
+            "src": "/media/notification-center/As-a-user-I-will-be-notified-if-the-brush-needs-to-be-replaced..png",
+            "alt": "This image presents a flow for a maintenance notification triggered by the robot cleaning app:\nOn the left, the user is notified of a brush replacement on their lock screen.\nThe user then opens the app to see a \"Battery low\" message and goes to the notifications screen, which shows maintenance alerts.\nThe final screen is a \"Parts & Maintenance\" section showing details about various parts like brushes and air filters, including usage hours and replacement options."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Deletion & Scrolling Behaviors",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "In addition to user flows, I had to deliver mockups of deletion behaviors and scrolling to development. These behaviors were included in notifications, and referenced for other pages of the app. cused on map editing and tooling expectations."
+          },
+          {
+            "type": "image",
+            "src": "/media/notification-center/601c3be7856c5f23de2eecf9_delete1.gif",
+            "alt": "A GIF showing slide left to delete notifications",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/notification-center/601c3be7856c5f15a92eecf7_delete2.gif",
+            "alt": "A GIF showing the \"select all\" function, which brings up checkboxes for each notification to select and delete.",
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "Final Handoff",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "After creating final specs for development, I delivered via Zeplin. The design is still subject to QA, testing, and future updates."
+          },
+          {
+            "type": "image",
+            "src": "/media/notification-center/Page-Anatomy_1.png",
+            "alt": "This image shows the breakdown of a notification page for a robot cleaning app:\nThe left side lists different notification elements, such as error alerts (e.g., brush stuck) and promotional messages from Neato. There are explanations of notification bell states (e.g., all notifications read, error present).\nThe right side shows a mobile notification screen with details like section breaks, padding between notifications, and time stamps. Notifications include maintenance alerts and promotions, all categorized by date."
+          }
+        ]
+      }
+    ]
+  },
+  "analytics": {
+    "company": "Neato Robotics",
+    "title": "History & Analytics",
+    "intro": "MyNeato is the second iteration of the companion app to the Neato robotic vacuums. I was tasked with taking the original History section of the app and redesigning it to better support the new robot models.",
+    "meta": [
+      {
+        "label": "Tools",
+        "value": "Figma, Appbot, Competitor Analysis, Zeplin"
+      },
+      {
+        "label": "Role",
+        "value": "Lead Designer"
+      },
+      {
+        "label": "Challenges",
+        "value": "• Redesigning the original Neato App's History section to be more user-friendly\n• Utilizing the new History section to present data in a way that is valuable to the user"
+      }
+    ],
+    "hero": {
+      "src": "/media/analytics/Frame-7.png",
+      "alt": "Two mobile screens comparing the old Neato app's history screen to the new Neato app's analytic screen. The old is dark and shows a single pixelated map. The new is la list of all cleaning runs with thumbnails of the new maps. The user can select each map to view more."
+    },
+    "sections": [
+      {
+        "id": "RealTimeMapping",
+        "title": "Research",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Utilizing Appbot, competitor audits, and competitor analysis’, I was able to get a better idea of what our users might be looking for in the new history section of the app. Overall, I learned that our competitors and our old app presented history logs as simple diary recordings of old robot runs. The information isn't helpful to users unless they want to see a map of their home. I decided to take this as an opportunity to utilize the information we record from the robot in a more helpful way. Would the user like to know the velocity of their robot? Would they like to know how to improve their cleaning runs based on our data?"
+          },
+          {
+            "type": "image",
+            "src": "/media/analytics/Frame-13.png",
+            "alt": "A cluster of research documentation including competitor analyses and hierarchy charts."
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "North Star Design & Flow Creation",
+        "layout": "vertical",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "I explored a few formatting options in my north star designs, but most followed the typical list format that users see in Facebook apps. Unfortunately these designs did not solve the problem of multiple devices (and overall clashed with the existing design of the app). The final designs became more of a reflection of messages from the device itself, utilizing chat bubbles. This way, a user is easily able to tell device messages apart via the profile icons on the left. Once the designs were finalized, I specified flows for our development team."
+          },
+          {
+            "type": "image",
+            "src": "/media/analytics/iterations.png",
+            "alt": "An image showing an exploration for multiple robots. The robots are shown as thumbnails at the top of the screen. The user can view charts showing how much they have cleaned total, how many minutes they have cleaned, and how many cleaning runs they have made.",
+            "row": 1
+          },
+          {
+            "type": "image",
+            "src": "/media/analytics/NS-flow.png",
+            "alt": "A user flow showing a user navigating from the home screen to the analytics tab. They see a high level chart of their cleaning history, and click into a list form. They select their most recent clean from the list and are able to see a map of the robot's cleaning path on their floor plan.",
+            "row": 1
+          }
+        ]
+      },
+      {
+        "id": "RealTimeMapping",
+        "title": "MVP 2020 Handoff & Release",
+        "layout": "horizontal",
+        "blocks": [
+          {
+            "type": "text",
+            "text": "Unfortunately, as release inched closer, the page as a whole became more simplistic. For release, we would not be able to implement the complicated dashboard designs I had delivered. Quickly responding to this change, Analytics became History, and the data shown became a simple diary of logs."
+          },
+          {
+            "type": "image",
+            "src": "/media/analytics/Page-Anatomy_2.png",
+            "alt": "An image showing the page anatomy and redlines of the final design of the MyNeato analytics page for handoff. The final design shows a single robot, the robot's name, and a list of cleaning history. The user can click into each cleaning run and view a map of the robot's cleaning path and more detailed information."
+          },
+          {
+            "type": "image",
+            "src": "/media/analytics/MVP.png",
+            "alt": "An image of the user flow from the main page to analytics. The user navigated into the history tab, and selects a recent clean. They can see that the clean was completed on floor 1, and it was started manually with the robot's button. A map at the bottom of the screen shows which zones the robot successfully cleaned."
+          }
+        ]
+      }
+    ]
+  }
+}
