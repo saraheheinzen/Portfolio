@@ -1,0 +1,134 @@
+﻿{
+    "neato-animations":  [
+                             "/media/neato-animations/601c3be7856c5f15a92eecf7_delete2.gif",
+                             "/media/neato-animations/601c3be7856c5f23de2eecf9_delete1.gif",
+                             "/media/neato-animations/601c3be7856c5f49d02eecfb_robotmanagement.gif",
+                             "/media/neato-animations/601c3be7856c5fbe972eecfd_scroll.gif"
+                         ],
+    "skiddy-kitty":  [
+                         "/media/skiddy-kitty/601c8847c350eba9ef43d484_Poppy.gif",
+                         "/media/skiddy-kitty/601c88906543f92ebc54070b_Cashew.gif",
+                         "/media/skiddy-kitty/601c88976543f98e0a540762_Plant.gif",
+                         "/media/skiddy-kitty/601c889b2fe85c8024058135_trixie.gif",
+                         "/media/skiddy-kitty/601ca78bd68fe268189a25dd_Frame-6.png",
+                         "/media/skiddy-kitty/601ca7b0089b68fd4f5007e6_Screen-Shot-2020-09-27-at-6.33.png",
+                         "/media/skiddy-kitty/601ca7ba3bea520af9c6e960_Group-127.png",
+                         "/media/skiddy-kitty/601ca7ba3bea525befc6e95d_Tuna.png",
+                         "/media/skiddy-kitty/601ca7ba3bea527beec6e966_Group-126.png",
+                         "/media/skiddy-kitty/601ca7ba3bea529ef9c6e963_Tuna-1.png",
+                         "/media/skiddy-kitty/Frame-8-1.png",
+                         "/media/skiddy-kitty/Meter-flows.png"
+                     ],
+    "tellsense":  [
+                      "/media/tellsense/Aug-05-2023-17-38-30.gif",
+                      "/media/tellsense/Aug-05-2023-19-57-27.gif",
+                      "/media/tellsense/Group-1010101182.png",
+                      "/media/tellsense/Group-1010101183.png",
+                      "/media/tellsense/Group-1010101184.png",
+                      "/media/tellsense/Group-1010101185.png",
+                      "/media/tellsense/hackathon.png",
+                      "/media/tellsense/Layer-0.png",
+                      "/media/tellsense/tellsensecover.png"
+                  ],
+    "analytics":  [
+                      "/media/analytics/Frame-13.png",
+                      "/media/analytics/Frame-7.png",
+                      "/media/analytics/iterations.png",
+                      "/media/analytics/MVP.png",
+                      "/media/analytics/NS-flow.png",
+                      "/media/analytics/Page-Anatomy_2.png"
+                  ],
+    "neato-hardware":  [
+                           "/media/neato-hardware/back.png",
+                           "/media/neato-hardware/critical.gif",
+                           "/media/neato-hardware/ecovacs.png",
+                           "/media/neato-hardware/Error.png",
+                           "/media/neato-hardware/extracting.gif",
+                           "/media/neato-hardware/Frame-1.png",
+                           "/media/neato-hardware/Frame-2.png",
+                           "/media/neato-hardware/Frame-3_3.png",
+                           "/media/neato-hardware/Frame-4_1.png",
+                           "/media/neato-hardware/Frame-5_2.png",
+                           "/media/neato-hardware/Frame-6_1.png",
+                           "/media/neato-hardware/Frame.png",
+                           "/media/neato-hardware/Front.png",
+                           "/media/neato-hardware/irobot.png",
+                           "/media/neato-hardware/Page-Anatomy.png",
+                           "/media/neato-hardware/Rosy.png",
+                           "/media/neato-hardware/Screen-Shot-2021-04-26-at-2.29.19-PM.png",
+                           "/media/neato-hardware/Screen-Shot-2021-04-26-at-2.31.58-PM.png",
+                           "/media/neato-hardware/Sheets.png",
+                           "/media/neato-hardware/v1.gif"
+                       ],
+    "xbox-game-your-way":  "/media/xbox-game-your-way/601c8bcf9a4faf0c271fc587_Logo-Reveal.gif",
+    "xr-prototyping":  [
+                           "/media/xr-prototyping/364153314_242374952075362_5144594482805237014_n.png",
+                           "/media/xr-prototyping/364816452_1433595800543602_6438888323562932114_n.png",
+                           "/media/xr-prototyping/Aug-05-2023-19-57-27.gif",
+                           "/media/xr-prototyping/quest.0001.png"
+                       ],
+    "neato-default-screen":  [
+                                 "/media/neato-default-screen/competitors.png",
+                                 "/media/neato-default-screen/default.png",
+                                 "/media/neato-default-screen/Frame-11.png",
+                                 "/media/neato-default-screen/Frame-3_1.png",
+                                 "/media/neato-default-screen/Frame-6.png",
+                                 "/media/neato-default-screen/real-time-map.gif",
+                                 "/media/neato-default-screen/story.png"
+                             ],
+    "spatial-spaces-picker":  [
+                                  "/media/spatial-spaces-picker/Frame-11_1.png",
+                                  "/media/spatial-spaces-picker/Frame-3643.png",
+                                  "/media/spatial-spaces-picker/Frame-3644.png",
+                                  "/media/spatial-spaces-picker/Frame-5127.png",
+                                  "/media/spatial-spaces-picker/Group-3496.png",
+                                  "/media/spatial-spaces-picker/Group-3631.png",
+                                  "/media/spatial-spaces-picker/Group-3809.png",
+                                  "/media/spatial-spaces-picker/Sign-On---reduce.png",
+                                  "/media/spatial-spaces-picker/spaces.png"
+                              ],
+    "neato-user-testing":  [
+                               "/media/neato-user-testing/Default-State-Mockup.gif",
+                               "/media/neato-user-testing/Frame-3_2.png",
+                               "/media/neato-user-testing/Frame-5_1.png",
+                               "/media/neato-user-testing/Group-1.png",
+                               "/media/neato-user-testing/Group-2453.png",
+                               "/media/neato-user-testing/Group-2455.png",
+                               "/media/neato-user-testing/Group-2458.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-05-at-9.19.38-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.30.15-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.35.50-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.38.00-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.42.06-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-5.55.01-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.07.40-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.09.29-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-06-at-6.09.57-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-02-10-at-3.01.07-PM.png",
+                               "/media/neato-user-testing/Screen-Shot-2021-03-06-at-3.07.43-PM.png"
+                           ],
+    "spatial-auto-gallery":  [
+                                 "/media/spatial-auto-gallery/ezgif-2-4ea2a660bd.gif",
+                                 "/media/spatial-auto-gallery/Frame-3659.png",
+                                 "/media/spatial-auto-gallery/Frame-3735.png",
+                                 "/media/spatial-auto-gallery/Frame-3736.png",
+                                 "/media/spatial-auto-gallery/Frame-3776.png",
+                                 "/media/spatial-auto-gallery/Group-3662.png",
+                                 "/media/spatial-auto-gallery/Group-3670.png"
+                             ],
+    "fuel-360":  [
+                     "/media/fuel-360/601c8a1c1db3850e94e95449_snickers.gif",
+                     "/media/fuel-360/601c8a246767d6c925c5791e_0c476d12-4539-4334-ae01-231488d471ab_rw_1920.gif",
+                     "/media/fuel-360/601c8a29e16cc8d0f7d0e66b_a4b036e1-db6a-412d-b34a-0c460cce195c_rw_1920.gif",
+                     "/media/fuel-360/Comp-1_2.gif"
+                 ],
+    "notification-center":  [
+                                "/media/notification-center/601c3be7856c5f15a92eecf7_delete2.gif",
+                                "/media/notification-center/601c3be7856c5f23de2eecf9_delete1.gif",
+                                "/media/notification-center/As-a-user-I-will-be-notified-if-the-brush-needs-to-be-replaced..png",
+                                "/media/notification-center/Group-2969.png",
+                                "/media/notification-center/northstar.png",
+                                "/media/notification-center/Notifications-researcdh.png",
+                                "/media/notification-center/Page-Anatomy_1.png"
+                            ]
+}
