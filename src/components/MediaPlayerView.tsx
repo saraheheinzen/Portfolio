@@ -1,20 +1,20 @@
 import { useCallback, useState } from 'react'
-import { youtubePlaylist, type AnimationClip } from '../data/content'
+import { mediaPlaylist, type AnimationClip } from '../data/content'
 import { VimeoPlayer } from './VimeoPlayer'
 
-interface YouTubeViewProps {
+interface MediaPlayerViewProps {
   onOpenProject: (id: string) => void
 }
 
-export function YouTubeView({ onOpenProject }: YouTubeViewProps) {
-  const [activeId, setActiveId] = useState(youtubePlaylist[0]?.id ?? '')
+export function MediaPlayerView({ onOpenProject }: MediaPlayerViewProps) {
+  const [activeId, setActiveId] = useState(mediaPlaylist[0]?.id ?? '')
   const [autoPlay, setAutoPlay] = useState(false)
 
   const index = Math.max(
     0,
-    youtubePlaylist.findIndex((c) => c.id === activeId),
+    mediaPlaylist.findIndex((c) => c.id === activeId),
   )
-  const active: AnimationClip = youtubePlaylist[index] ?? youtubePlaylist[0]
+  const active: AnimationClip = mediaPlaylist[index] ?? mediaPlaylist[0]
 
   const selectClip = useCallback((clip: AnimationClip, play: boolean) => {
     setActiveId(clip.id)
@@ -24,8 +24,8 @@ export function YouTubeView({ onOpenProject }: YouTubeViewProps) {
   const goRelative = useCallback(
     (delta: number, play: boolean) => {
       const next =
-        youtubePlaylist[
-          (index + delta + youtubePlaylist.length) % youtubePlaylist.length
+        mediaPlaylist[
+          (index + delta + mediaPlaylist.length) % mediaPlaylist.length
         ]
       if (next) selectClip(next, play)
     },
@@ -35,10 +35,10 @@ export function YouTubeView({ onOpenProject }: YouTubeViewProps) {
   if (!active) return null
 
   return (
-    <div className="player-view player-view--app youtube-view">
+    <div className="player-view player-view--app">
       <header className="player-view__bar">
         <div className="player-view__now">
-          <p className="player-view__eyebrow">YouTube · Library</p>
+          <p className="player-view__eyebrow">Media Player · Library</p>
           <h1 className="player-view__title">{active.title}</h1>
           <p className="player-view__lede">{active.subtitle}</p>
         </div>
@@ -53,7 +53,7 @@ export function YouTubeView({ onOpenProject }: YouTubeViewProps) {
           </button>
           <span className="player-view__count">
             {String(index + 1).padStart(2, '0')} /{' '}
-            {String(youtubePlaylist.length).padStart(2, '0')}
+            {String(mediaPlaylist.length).padStart(2, '0')}
           </span>
           <button
             type="button"
@@ -83,7 +83,7 @@ export function YouTubeView({ onOpenProject }: YouTubeViewProps) {
         <aside className="player-view__queue" aria-label="Up next">
           <p className="player-view__playlist-label">Up next</p>
           <ul>
-            {youtubePlaylist.map((clip, i) => {
+            {mediaPlaylist.map((clip, i) => {
               const isActive = clip.id === active.id
               return (
                 <li key={clip.id}>

@@ -85,7 +85,10 @@ for (const [id, page] of Object.entries(pages)) {
     /<h6 class="subheading2">([\s\S]*?)<\/h6>\s*<p class="paragraph">([\s\S]*?)<\/p>/g
   let mm
   while ((mm = metaRe.exec(header))) {
-    meta.push({ label: stripTags(mm[1]), value: stripTags(mm[2]) })
+    let value = stripTags(mm[2])
+    // Normalize glued bullet characters: "•Foo" → "• Foo"
+    value = value.replace(/•(?=\S)/g, '• ')
+    meta.push({ label: stripTags(mm[1]), value })
   }
 
   const heroImgs = [...header.matchAll(/<img[^>]+>/g)].map((x) => x[0])
@@ -100,6 +103,23 @@ for (const [id, page] of Object.entries(pages)) {
     else hero = { src: p, alt }
   }
 
+  // Phone Vimeo hero (e.g. Skiddy Kitty) — parsed when no still hero image
+  if (!hero) {
+    const headerVid = extractVimeoFromIframe(
+      (header.match(/<iframe[^>]+>/) || [])[0] || '',
+      header,
+    )
+    if (headerVid) {
+      hero = {
+        src: headerVid.src,
+        alt: `${stripTags(title || id)} gameplay`,
+        video: true,
+        phone: true,
+        accent: /skiddy/i.test(header) ? 'peach' : undefined,
+      }
+    }
+  }
+
   const toc = []
   const tocRe = /<a href="(#[^"]+)" class="link">([\s\S]*?)<\/a>/g
   while ((mm = tocRe.exec(header))) {
@@ -107,11 +127,33 @@ for (const [id, page] of Object.entries(pages)) {
   }
 
   const body = html.replace(/<header[\s\S]*?<\/header>/i, '')
+
+  // Character / media slider above the first text section
+  const sliderMatch = body.match(
+    /class="[^"]*slidergallery[^"]*"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/i,
+  )
+  const sliderBlocks = []
+  if (sliderMatch) {
+    for (const img of sliderMatch[0].matchAll(/<img[^>]+>/g)) {
+      const src = (img[0].match(/\ssrc="([^"]+)"/) || [])[1]
+      const alt = decode((img[0].match(/\salt="([^"]*)"/) || [])[1] || '')
+      const p = mediaPath(id, src)
+      if (p) sliderBlocks.push({ type: 'image', src: p, alt })
+    }
+  }
+
   const parts = body.split(
     /(?=<div id="[^"]*" class="section1"|<section class="tellsensevid"|<div class="section1")/,
   )
 
   const sections = []
+  if (sliderBlocks.length) {
+    sections.push({
+      id: 'CharacterAnimations',
+      layout: 'carousel',
+      blocks: sliderBlocks,
+    })
+  }
   for (const part of parts.slice(1)) {
     if (part.startsWith('<div class="lower"') || part.startsWith('<script')) continue
     const endIdx = part.search(/<div class="lower"|<script /)

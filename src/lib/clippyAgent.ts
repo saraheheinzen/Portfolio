@@ -102,6 +102,18 @@ function scoreChunk(chunk: KnowledgeChunk, toks: string[], raw: string): number 
   if (/\b(who is|who're|who's|about sarah|tell me about)\b/.test(raw) && chunk.id === 'who') {
     score += 12
   }
+  if (/\b(finnley|finley)\b/.test(raw) && chunk.id === 'who') {
+    score -= 10
+  }
+  if (
+    /\b(finnley|finley|who is finnley|about finnley)\b/.test(raw) &&
+    chunk.id === 'finnley'
+  ) {
+    score += 16
+  }
+  if (/\b(dog|puppy|pet)\b/.test(raw) && /\b(finnley|finley|sarah|who|what)\b/.test(raw) && chunk.id === 'finnley') {
+    score += 12
+  }
   if (/\b(email|contact|reach|hire)\b/.test(raw) && chunk.id === 'contact') {
     score += 10
   }
@@ -113,6 +125,13 @@ function scoreChunk(chunk: KnowledgeChunk, toks: string[], raw: string): number 
     chunk.id === 'portfolio-os'
   ) {
     score += 8
+  }
+  if (
+    /\b(why|reason|because)\b/.test(raw) &&
+    /\b(desktop|site|portfolio|os|windows)\b/.test(raw) &&
+    chunk.id === 'why-desktop'
+  ) {
+    score += 14
   }
   if (/\bfeatured\b/.test(raw) && chunk.id === 'featured') {
     score += 8
@@ -136,7 +155,8 @@ function clippyVoice(body: string, topic?: string): string {
 export function defaultSuggestions(action?: ClippyAction): string[] {
   const base = [
     'Who is Sarah?',
-    'Show Browser',
+    'Who is Finnley?',
+    'Why is the site a desktop?',
     'How do I use this site?',
     'How can I contact her?',
   ]
@@ -174,7 +194,7 @@ export function answerClippyLocal(question: string): ClippyReply {
   const raw = question.trim()
   if (!raw) {
     return {
-      text: 'Ask me anything about Sarah or this Portfolio OS — projects, skills, contact, or how to poke around.',
+      text: 'Ask me anything about Sarah or this Portfolio OS: projects, skills, contact, or how to poke around.',
       suggestions: defaultSuggestions(),
       source: 'local',
     }
@@ -182,7 +202,7 @@ export function answerClippyLocal(question: string): ClippyReply {
 
   if (GREETINGS.test(raw) && raw.length < 40) {
     return {
-      text: `Hi! I’m Clippy, temporary office assistant for ${about.name}’s Portfolio OS. Ask about her work, open projects, or how to get around the desktop.`,
+      text: `Hi! I’m Finnley, Sarah’s dog, and the little assistant on her Portfolio OS. Ask about her work, open projects, or how to get around the desktop.`,
       suggestions: defaultSuggestions(),
       source: 'local',
     }
@@ -201,6 +221,7 @@ export function answerClippyLocal(question: string): ClippyReply {
       text: [
         'I can help with:',
         '• Who Sarah is and where she works',
+        '• Who Finnley is (Sarah’s dog!)',
         '• Projects, case studies, and Browser highlights',
         '• Skills and tools',
         '• How this Portfolio OS works',
@@ -235,7 +256,7 @@ export function answerClippyLocal(question: string): ClippyReply {
     top.chunk.id.startsWith('project-') &&
     runner.chunk.id.startsWith('project-')
   ) {
-    body += `\n\nRelated: ${runner.chunk.topic} — ${runner.chunk.text.split('\n')[1] ?? runner.chunk.text.slice(0, 160)}`
+    body += `\n\nRelated: ${runner.chunk.topic}: ${runner.chunk.text.split('\n')[1] ?? runner.chunk.text.slice(0, 160)}`
   }
 
   if (body.length > 900) {
@@ -355,6 +376,8 @@ export async function askClippy(
 
 export const CLIPPY_STARTER_CHIPS = [
   'Who is Sarah?',
+  'Who is Finnley?',
+  'Why is the site a desktop?',
   'Browser highlights',
   'TellSense',
   'Get Goating',

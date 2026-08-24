@@ -13,7 +13,6 @@ export function KnowledgeListView({ kind }: KnowledgeListViewProps) {
     return (
       <div className="knowledge-list">
         <header className="knowledge-list__header">
-          <p className="knowledge-list__eyebrow">sarahheinzen.com</p>
           <h1>Speaking</h1>
           <p className="knowledge-list__lede">
             Talks and conversations on inclusive product, play, and adaptive
@@ -42,7 +41,6 @@ export function KnowledgeListView({ kind }: KnowledgeListViewProps) {
   return (
     <div className="knowledge-list">
       <header className="knowledge-list__header">
-        <p className="knowledge-list__eyebrow">sarahheinzen.com</p>
         <h1>Blog</h1>
         <p className="knowledge-list__lede">
           Notes on craft, access, and building curious things.

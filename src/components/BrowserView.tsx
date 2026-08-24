@@ -10,7 +10,7 @@ import {
   type BrowserSection,
   type BrowserSectionId,
 } from '../data/browser'
-import { getProject } from '../data/content'
+import { getProject, splitProjectTags } from '../data/content'
 import { InclusiveDesignView } from './InclusiveDesignView'
 import { KnowledgeListView } from './KnowledgeListView'
 import { ProjectView } from './ProjectView'
@@ -70,7 +70,6 @@ function SectionPage({
     return (
       <div className="browser-home">
         <header className="browser-home__header">
-          <p className="browser-home__eyebrow">sarahheinzen.com</p>
           <h1 className="browser-home__title">{section.label}</h1>
           <p className="browser-home__lede">{section.description}</p>
         </header>
@@ -84,14 +83,28 @@ function SectionPage({
               >
                 <span className="browser-home__thumb">
                   <img src={project.cover} alt="" draggable={false} />
-                  {project.locked ? (
-                    <span className="browser-home__lock" aria-hidden="true">
-                      Locked
-                    </span>
+                  {!project.locked && project.coverHover ? (
+                    <img
+                      className="browser-home__thumb-hover"
+                      src={project.coverHover}
+                      alt=""
+                      loading="lazy"
+                      draggable={false}
+                    />
                   ) : null}
+                  <span className="browser-home__chips" aria-label="Tags">
+                    {splitProjectTags(project.tags).map((chip) => (
+                      <span key={chip} className="browser-home__chip">
+                        {chip}
+                      </span>
+                    ))}
+                  </span>
                 </span>
                 <span className="browser-home__meta">
-                  <strong>{project.title}</strong>
+                  <span className="browser-home__title-row">
+                    <strong>{project.title}</strong>
+                    {project.locked ? <em>Locked</em> : null}
+                  </span>
                 </span>
               </button>
             </li>
@@ -202,9 +215,7 @@ export function BrowserView({
                   data-section={tab.id}
                   onClick={() => selectSection(tab.id)}
                 >
-                  <span className="browser-view__mark" aria-hidden="true">
-                    {tab.mark}
-                  </span>
+                  <span className="browser-view__mark" aria-hidden="true" />
                   <span className="browser-view__tab-label">{tab.label}</span>
                 </button>
                 {selected ? (
@@ -282,9 +293,7 @@ export function BrowserView({
                 title={tab.label}
                 onClick={() => selectSection(tab.id)}
               >
-                <span className="browser-view__mark" aria-hidden="true">
-                  {tab.mark}
-                </span>
+                <span className="browser-view__mark" aria-hidden="true" />
                 <span className="browser-view__tab-label">{tab.label}</span>
               </button>
             )
@@ -320,7 +329,6 @@ export function BrowserView({
             </svg>
             <span className="browser-view__url">{url}</span>
           </div>
-          <span className="browser-view__section">{section.label}</span>
         </div>
       </div>
 

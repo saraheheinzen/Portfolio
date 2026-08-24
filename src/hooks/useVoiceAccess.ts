@@ -54,7 +54,7 @@ export type VoiceStatus =
   | 'idle'
 
 const COMMAND_COOLDOWN_MS = 1400
-const MUTED_HINT = 'Muted — unmute to listen again.'
+const MUTED_HINT = 'Muted. Unmute to listen again.'
 
 export function useVoiceAccess(
   enabled: boolean,
@@ -145,7 +145,7 @@ export function useVoiceAccess(
         return
       }
       setStatus('error')
-      setHeard('Voice Access hit a snag — try toggling it again.')
+      setHeard('Voice Access hit a snag. Try toggling it again.')
       setHearing(false)
     }
 
@@ -183,7 +183,7 @@ export function useVoiceAccess(
 
       const match = matchVoiceCommand(transcript)
       if (!match) {
-        setHeard(`Heard “${transcript}” — say “help” for commands.`)
+        setHeard(`Heard “${transcript}.” Say “help” for commands.`)
         return
       }
 

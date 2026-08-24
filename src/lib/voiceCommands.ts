@@ -1,10 +1,7 @@
-import type { A11yState } from '../hooks/useExploreMode'
+import type { A11yToggleKey } from '../hooks/useExploreMode'
 import type { ProjectCategory } from '../data/content'
 
-export type A11yToggleKey = keyof Omit<
-  A11yState,
-  'mode' | 'colorFilter' | 'textScale'
->
+export type { A11yToggleKey }
 
 export type VoiceAction =
   | { type: 'openFolder'; category: ProjectCategory }
@@ -18,6 +15,7 @@ export type VoiceAction =
   | { type: 'setMagnifier'; on: boolean }
   | { type: 'toggleA11y'; key: A11yToggleKey }
   | { type: 'closeWindow' }
+  | { type: 'throwBall'; direction?: 'left' | 'right' | 'up' }
   | { type: 'help' }
 
 export interface MatchedVoiceCommand {
@@ -26,7 +24,7 @@ export interface MatchedVoiceCommand {
 }
 
 const HELP_HINT =
-  'Try “open games”, “show about”, “mute”, “go to dock”, or “stop listening”.'
+  'Try “open games”, “throw ball”, “show about”, “mute”, “go to dock”, or “stop listening”.'
 
 interface CommandSpec {
   phrases: string[]
@@ -41,9 +39,16 @@ const COMMANDS: CommandSpec[] = [
     action: { type: 'openFolder', category: 'games' },
   },
   {
-    phrases: ['open youtube', 'show youtube', 'youtube library'],
-    label: 'Opening YouTube',
-    action: { type: 'openFolder', category: 'youtube' },
+    phrases: [
+      'open media player',
+      'show media player',
+      'open player',
+      'media library',
+      'open youtube',
+      'show youtube',
+    ],
+    label: 'Opening Media Player',
+    action: { type: 'openFolder', category: 'player' },
   },
   {
     phrases: ['open browser', 'show browser', 'open portfolio', 'show work'],
@@ -159,6 +164,32 @@ const COMMANDS: CommandSpec[] = [
     phrases: ['close window', 'close that', 'close this'],
     label: 'Closing window',
     action: { type: 'closeWindow' },
+  },
+  {
+    phrases: ['throw ball left', 'toss ball left', 'fetch left'],
+    label: 'Throwing ball left',
+    action: { type: 'throwBall', direction: 'left' },
+  },
+  {
+    phrases: ['throw ball right', 'toss ball right', 'fetch right'],
+    label: 'Throwing ball right',
+    action: { type: 'throwBall', direction: 'right' },
+  },
+  {
+    phrases: ['throw ball up', 'toss ball up', 'fetch up'],
+    label: 'Throwing ball up',
+    action: { type: 'throwBall', direction: 'up' },
+  },
+  {
+    phrases: [
+      'throw ball',
+      'throw the ball',
+      'toss the ball',
+      'play fetch',
+      'fetch',
+    ],
+    label: 'Throwing ball',
+    action: { type: 'throwBall', direction: 'right' },
   },
   {
     phrases: ['help', 'what can i say', 'voice help', 'list commands'],

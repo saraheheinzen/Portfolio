@@ -18,6 +18,19 @@ export type ColorFilter =
   | 'deuteranopia'
   | 'tritanopia'
 
+/** Vision menu typefaces. */
+export type FontFamily = 'default' | 'comic' | 'legible' | 'dyslexia'
+
+/** Pointer size for mouse and head/dwell cursors. */
+export type CursorSize = 'default' | 'large' | 'xlarge' | 'xxlarge'
+
+export const CURSOR_SCALE: Record<CursorSize, number> = {
+  default: 1,
+  large: 1.5,
+  xlarge: 2,
+  xxlarge: 2.75,
+}
+
 export interface A11yState {
   mode: ExploreMode | null
   narrator: boolean
@@ -32,8 +45,17 @@ export interface A11yState {
   reducedMotion: boolean
   /** Text size as a percent of default (100–150). */
   textScale: number
+  /** Site-wide typeface override from the Vision menu. */
+  fontFamily: FontFamily
+  /** Enlarged pointer for mouse, head, and dwell cursors. */
+  cursorSize: CursorSize
   keyboardOnly: boolean
 }
+
+export type A11yToggleKey = keyof Omit<
+  A11yState,
+  'mode' | 'colorFilter' | 'textScale' | 'fontFamily' | 'cursorSize'
+>
 
 /** How long the pointer must stay on a target before dwell activates it (ms). */
 export const DWELL_MS_DEFAULT = 1000
@@ -54,13 +76,13 @@ export const EXPLORE_OPTIONS: Array<{
   {
     id: 'mouse',
     label: 'Mouse',
-    description: 'Standard pointer and click — add head or dwell from the dock anytime.',
+    description: 'Standard pointer and click. Add head or dwell from the dock anytime.',
   },
   {
     id: 'head',
     label: 'Head Control',
     description:
-      'Move with your head, smile to click — larger targets and snap assist from the start.',
+      'Move with your head, smile to click. Larger targets and snap assist from the start.',
   },
   {
     id: 'keyboard',
@@ -70,18 +92,18 @@ export const EXPLORE_OPTIONS: Array<{
   {
     id: 'voice',
     label: 'Voice',
-    description: 'Say commands like “open games” or “show about” — mic listens from the start.',
+    description: 'Say commands like “open games” or “show about.” Mic listens from the start.',
   },
   {
     id: 'screenReader',
     label: 'Screen Reader',
     description:
-      'This site is nonlinear — this mode lays it out for easier reading.',
+      'This site is nonlinear. This mode lays it out for easier reading.',
   },
   {
     id: 'reducedMotion',
     label: 'Reduced Motion',
-    description: 'Still desktop — animations and motion cues quiet down.',
+    description: 'Still desktop. Animations and motion cues quiet down.',
   },
   {
     id: 'highContrast',
@@ -113,6 +135,8 @@ function featuresForMode(mode: ExploreMode): Omit<A11yState, 'mode'> {
     darkMode: false,
     reducedMotion: false,
     textScale: TEXT_SCALE_DEFAULT,
+    fontFamily: 'default',
+    cursorSize: 'default',
     keyboardOnly: false,
   }
 
@@ -138,7 +162,6 @@ function featuresForMode(mode: ExploreMode): Omit<A11yState, 'mode'> {
       return {
         ...base,
         narrator: true,
-        voiceAccess: true,
         keyboardOnly: true,
       }
     case 'reducedMotion':
@@ -188,53 +211,30 @@ function writeStoredDark(on: boolean) {
 }
 
 export function useExploreMode() {
-  const [mode, setModeState] = useState<ExploreMode | null>(() => readStoredMode())
+  const [mode, setModeState] = useState<ExploreMode | null>(() => readStoredMode() ?? 'mouse')
   const [overrides, setOverrides] = useState<Partial<Omit<A11yState, 'mode'>>>(
     () => (readStoredDark() ? { darkMode: true } : {}),
   )
 
-  const chooseMode = useCallback((next: ExploreMode) => {
-    setModeState(next)
-    setOverrides(readStoredDark() ? { darkMode: true } : {})
-    try {
-      sessionStorage.setItem(STORAGE_KEY, next)
-    } catch {
-      /* ignore */
-    }
-  }, [])
+  const toggle = useCallback((key: A11yToggleKey) => {
+    setOverrides((prev) => {
+      const current = featuresForMode(mode ?? 'mouse')
+      const merged = { ...current, ...prev }
+      const next = !merged[key]
+      const patch: Partial<Omit<A11yState, 'mode'>> = { [key]: next }
 
-  const resetExplore = useCallback(() => {
-    setModeState(null)
-    setOverrides(readStoredDark() ? { darkMode: true } : {})
-    try {
-      sessionStorage.removeItem(STORAGE_KEY)
-    } catch {
-      /* ignore */
-    }
-  }, [])
+      if (key === 'darkMode') {
+        writeStoredDark(next)
+        if (next) patch.highContrast = false
+      }
+      if (key === 'highContrast' && next) {
+        patch.darkMode = false
+        writeStoredDark(false)
+      }
 
-  const toggle = useCallback(
-    (key: keyof Omit<A11yState, 'mode' | 'colorFilter' | 'textScale'>) => {
-      setOverrides((prev) => {
-        const current = featuresForMode(mode ?? 'mouse')
-        const merged = { ...current, ...prev }
-        const next = !merged[key]
-        const patch: Partial<Omit<A11yState, 'mode'>> = { [key]: next }
-
-        if (key === 'darkMode') {
-          writeStoredDark(next)
-          if (next) patch.highContrast = false
-        }
-        if (key === 'highContrast' && next) {
-          patch.darkMode = false
-          writeStoredDark(false)
-        }
-
-        return { ...prev, ...patch }
-      })
-    },
-    [mode],
-  )
+      return { ...prev, ...patch }
+    })
+  }, [mode])
 
   const setColorFilter = useCallback((colorFilter: ColorFilter) => {
     setOverrides((prev) => ({ ...prev, colorFilter }))
@@ -242,6 +242,14 @@ export function useExploreMode() {
 
   const setTextScale = useCallback((value: number) => {
     setOverrides((prev) => ({ ...prev, textScale: clampTextScale(value) }))
+  }, [])
+
+  const setFontFamily = useCallback((fontFamily: FontFamily) => {
+    setOverrides((prev) => ({ ...prev, fontFamily }))
+  }, [])
+
+  const setCursorSize = useCallback((cursorSize: CursorSize) => {
+    setOverrides((prev) => ({ ...prev, cursorSize }))
   }, [])
 
   const state: A11yState = useMemo(() => {
@@ -257,6 +265,8 @@ export function useExploreMode() {
         darkMode: false,
         reducedMotion: false,
         textScale: TEXT_SCALE_DEFAULT,
+        fontFamily: 'default',
+        cursorSize: 'default',
         keyboardOnly: false,
         ...overrides,
       }
@@ -278,6 +288,11 @@ export function useExploreMode() {
     root.classList.toggle('a11y-motion-off', state.reducedMotion)
     root.classList.toggle('a11y-keyboard', state.keyboardOnly)
     root.dataset.colorFilter = state.colorFilter
+    root.dataset.font = state.fontFamily
+    root.style.setProperty(
+      '--cursor-scale',
+      String(CURSOR_SCALE[state.cursorSize]),
+    )
 
     // Head control needs oversized targets — boost beyond the text-size slider.
     const scale = state.headControl
@@ -301,7 +316,9 @@ export function useExploreMode() {
         'a11y-keyboard',
       )
       delete root.dataset.colorFilter
+      delete root.dataset.font
       root.style.removeProperty('--text-scale')
+      root.style.removeProperty('--cursor-scale')
       root.style.removeProperty('--dock-h')
       root.style.colorScheme = ''
     }
@@ -311,10 +328,10 @@ export function useExploreMode() {
     mode,
     state,
     ready: mode !== null,
-    chooseMode,
-    resetExplore,
     toggle,
     setColorFilter,
     setTextScale,
+    setFontFamily,
+    setCursorSize,
   }
 }

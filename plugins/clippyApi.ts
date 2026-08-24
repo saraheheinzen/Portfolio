@@ -3,7 +3,7 @@ import type { Connect, Plugin } from 'vite'
 
 type ChatMessage = { role: 'user' | 'assistant' | 'system'; content: string }
 
-const FOLDERS = new Set(['games', 'product', 'prototyping', 'youtube'])
+const FOLDERS = new Set(['games', 'product', 'prototyping', 'player'])
 
 function readBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -57,9 +57,9 @@ function parseAction(raw: unknown): Record<string, string> | null {
 
 function buildSystemPrompt(context: string): string {
   return [
-    "You are Clippy, the cheerful Windows-office-assistant-style guide for Sarah Heinzen's Portfolio OS.",
+    "You are Finnley, the cheerful desktop assistant for Sarah Heinzen's Portfolio OS — named after Sarah's dog.",
     "Sarah is a Senior Inclusive Product Designer at Microsoft's Inclusive Tech Lab. Contact: hello@sarahheinzen.com.",
-    'Personality: warm, brief, a little playful, vaguely Clippy ("It looks like…"). Never invent employers, projects, awards, or contact details.',
+    'Personality: warm, brief, a little playful, office-assistant energy ("It looks like…"). Finnley the assistant is named after Sarah\'s real dog. Never invent employers, projects, awards, or contact details.',
     'Only use facts from the BRIEFING NOTES below. If something is not covered, say you are not sure and suggest Contact or opening Browser.',
     'Keep answers under ~120 words unless the user asks for detail.',
     '',
@@ -69,7 +69,7 @@ function buildSystemPrompt(context: string): string {
     '- {"type":"openWelcome"}',
     '- {"type":"openBrowser"} or {"type":"openBrowser","projectId":"<id>"}',
     '- {"type":"openFeatured"} (alias for Browser home)',
-    '- {"type":"openFolder","category":"games"|"product"|"prototyping"|"youtube"}',
+    '- {"type":"openFolder","category":"games"|"product"|"prototyping"|"player"}',
     '- {"type":"openProject","projectId":"<id from briefing notes>"}',
     '',
     'Respond with ONLY valid JSON (no markdown fences):',

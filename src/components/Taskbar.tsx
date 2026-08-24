@@ -1,15 +1,20 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import type { DesktopWindow } from '../hooks/useDesktop'
 import type { ProjectCategory } from '../data/content'
 import { about } from '../data/content'
 import { browserSections } from '../data/browser'
+import { PINNED_APPS } from '../data/apps'
 import {
   TEXT_SCALE_MAX,
   TEXT_SCALE_MIN,
   type A11yState,
+  type A11yToggleKey,
   type ColorFilter,
+  type CursorSize,
+  type FontFamily,
 } from '../hooks/useExploreMode'
 import { WinIcon } from './WinIcon'
+import { Dropdown } from './Dropdown'
 
 const FILTERS: Array<{ id: ColorFilter; label: string }> = [
   { id: 'none', label: 'None' },
@@ -20,28 +25,18 @@ const FILTERS: Array<{ id: ColorFilter; label: string }> = [
   { id: 'tritanopia', label: 'Tritanopia' },
 ]
 
-type AppIcon =
-  | 'user'
-  | 'browser'
-  | 'steam'
-  | 'youtube'
-  | 'mail'
-  | 'notepad'
-  | 'terminal'
+const FONTS: Array<{ id: FontFamily; label: string }> = [
+  { id: 'default', label: 'Default' },
+  { id: 'comic', label: 'Comic Sans' },
+  { id: 'legible', label: 'Atkinson Hyperlegible' },
+  { id: 'dyslexia', label: 'OpenDyslexic' },
+]
 
-const START_APPS: Array<{
-  id: string
-  label: string
-  icon: AppIcon
-  action: 'about' | 'browser' | 'games' | 'youtube' | 'contact' | 'welcome' | 'terminal'
-}> = [
-  { id: 'about', label: 'About Me', icon: 'user', action: 'about' },
-  { id: 'browser', label: 'Browser', icon: 'browser', action: 'browser' },
-  { id: 'games', label: 'Games', icon: 'steam', action: 'games' },
-  { id: 'youtube', label: 'YouTube', icon: 'youtube', action: 'youtube' },
-  { id: 'contact', label: 'Contact', icon: 'mail', action: 'contact' },
-  { id: 'welcome', label: 'Sticky', icon: 'notepad', action: 'welcome' },
-  { id: 'terminal', label: 'Terminal', icon: 'terminal', action: 'terminal' },
+const CURSOR_SIZES: Array<{ id: CursorSize; label: string }> = [
+  { id: 'default', label: 'Default' },
+  { id: 'large', label: 'Large' },
+  { id: 'xlarge', label: 'Extra large' },
+  { id: 'xxlarge', label: 'Extra extra large' },
 ]
 
 function A11yToggle({
@@ -69,6 +64,37 @@ function A11yToggle({
   )
 }
 
+/** Which pinned taskbar icon a given window belongs to (groups related window kinds). */
+function pinnedAppForWindow(win: DesktopWindow): string | null {
+  switch (win.kind) {
+    case 'browser':
+    case 'project':
+      return 'browser'
+    case 'about':
+      return 'about'
+    case 'contact':
+      return 'contact'
+    case 'welcome':
+      return 'welcome'
+    case 'terminal':
+      return 'terminal'
+    case 'documents':
+    case 'document':
+      return 'documents'
+    case 'photos':
+    case 'photo':
+      return 'photos'
+    case 'figma':
+      return 'figma'
+    case 'folder':
+      if (win.category === 'games') return 'games'
+      if (win.category === 'player') return 'player'
+      return null
+    default:
+      return null
+  }
+}
+
 interface TaskbarProps {
   windows: DesktopWindow[]
   startOpen: boolean
@@ -77,18 +103,21 @@ interface TaskbarProps {
   onToggleStart: () => void
   onToggleMagnifier: () => void
   onFocusWindow: (id: string) => void
+  onMinimizeWindow: (id: string) => void
   onOpenAbout: () => void
   onOpenContact: () => void
   onOpenBrowser: (route?: string) => void
   onOpenTerminal: () => void
   onOpenWelcome: () => void
+  onOpenDocuments: () => void
+  onOpenPhotos: () => void
+  onOpenFigma: () => void
   onOpenFolder: (category: ProjectCategory) => void
-  onToggleA11y: (
-    key: keyof Omit<A11yState, 'mode' | 'colorFilter' | 'textScale'>,
-  ) => void
+  onToggleA11y: (key: A11yToggleKey) => void
   onColorFilter: (filter: ColorFilter) => void
   onTextScale: (value: number) => void
-  onChangeExplore: () => void
+  onFontFamily: (font: FontFamily) => void
+  onCursorSize: (size: CursorSize) => void
 }
 
 export function Taskbar({
@@ -99,21 +128,38 @@ export function Taskbar({
   onToggleStart,
   onToggleMagnifier,
   onFocusWindow,
+  onMinimizeWindow,
   onOpenAbout,
   onOpenContact,
   onOpenBrowser,
   onOpenTerminal,
   onOpenWelcome,
+  onOpenDocuments,
+  onOpenPhotos,
+  onOpenFigma,
   onOpenFolder,
   onToggleA11y,
   onColorFilter,
   onTextScale,
-  onChangeExplore,
+  onFontFamily,
+  onCursorSize,
 }: TaskbarProps) {
   const [now, setNow] = useState(() => new Date())
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
   const settingsRef = useRef<HTMLDivElement>(null)
+  const moreRef = useRef<HTMLDivElement>(null)
+  const launcherRef = useRef<HTMLButtonElement>(null)
+  const launcherMenuRef = useRef<HTMLDivElement>(null)
   const settingsId = useId()
+
+  const focusAboutMe = () => {
+    const aboutButton =
+      launcherMenuRef.current?.querySelector<HTMLButtonElement>(
+        '[data-start-item="about"]',
+      )
+    aboutButton?.focus({ preventScroll: true })
+  }
 
   useEffect(() => {
     const id = window.setInterval(() => setNow(new Date()), 30_000)
@@ -121,7 +167,10 @@ export function Taskbar({
   }, [])
 
   useEffect(() => {
-    if (startOpen) setSettingsOpen(false)
+    if (startOpen) {
+      setSettingsOpen(false)
+      setMoreOpen(false)
+    }
   }, [startOpen])
 
   useEffect(() => {
@@ -143,16 +192,46 @@ export function Taskbar({
   }, [settingsOpen])
 
   useEffect(() => {
+    if (!moreOpen) return
+    const onPointer = (e: PointerEvent) => {
+      if (!moreRef.current?.contains(e.target as Node)) {
+        setMoreOpen(false)
+      }
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMoreOpen(false)
+    }
+    window.addEventListener('pointerdown', onPointer)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('pointerdown', onPointer)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [moreOpen])
+
+  useEffect(() => {
     if (!startOpen) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onToggleStart()
+      if (e.key === 'Escape') {
+        onToggleStart()
+        if (a11y.keyboardOnly) {
+          launcherRef.current?.focus({ preventScroll: true })
+        }
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [startOpen, onToggleStart])
+  }, [startOpen, onToggleStart, a11y.keyboardOnly])
+
+  useLayoutEffect(() => {
+    if (!startOpen || !a11y.keyboardOnly) return
+    focusAboutMe()
+    const id = window.setTimeout(focusAboutMe, 50)
+    return () => window.clearTimeout(id)
+  }, [startOpen, a11y.keyboardOnly])
 
   const runStartAction = (
-    action: (typeof START_APPS)[number]['action'],
+    action: (typeof PINNED_APPS)[number]['action'],
   ) => {
     switch (action) {
       case 'about':
@@ -164,8 +243,8 @@ export function Taskbar({
       case 'games':
         onOpenFolder('games')
         break
-      case 'youtube':
-        onOpenFolder('youtube')
+      case 'player':
+        onOpenFolder('player')
         break
       case 'contact':
         onOpenContact()
@@ -176,6 +255,15 @@ export function Taskbar({
       case 'terminal':
         onOpenTerminal()
         break
+      case 'documents':
+        onOpenDocuments()
+        break
+      case 'photos':
+        onOpenPhotos()
+        break
+      case 'figma':
+        onOpenFigma()
+        break
     }
   }
 
@@ -185,14 +273,24 @@ export function Taskbar({
     .map((n) => n[0])
     .join('')
 
+  // Sticky intro lives inside About Me in screen reader mode.
+  const pinnedApps = a11y.narrator
+    ? PINNED_APPS.filter((app) => app.id !== 'welcome')
+    : PINNED_APPS
+  const topZIndex = Math.max(
+    0,
+    ...windows.filter((w) => !w.minimized).map((w) => w.zIndex),
+  )
+
   return (
-    <footer className="dock">
+    <footer className={`dock${startOpen ? ' is-start-open' : ''}`}>
       <div className="dock__shell">
         <div
           className="dock__launcher-wrap"
           onClick={(e) => e.stopPropagation()}
         >
           <button
+            ref={launcherRef}
             type="button"
             className={`dock__launcher${startOpen ? ' is-active' : ''}`}
             aria-label="Start menu"
@@ -205,6 +303,7 @@ export function Taskbar({
 
           {startOpen ? (
             <div
+              ref={launcherMenuRef}
               className="launcher-menu"
               role="dialog"
               aria-label="Start menu"
@@ -223,11 +322,13 @@ export function Taskbar({
                 <nav className="launcher-menu__pane" aria-label="Apps">
                   <p className="launcher-menu__pane-label">Apps</p>
                   <ul className="launcher-menu__list">
-                    {START_APPS.map((app) => (
+                    {PINNED_APPS.map((app) => (
                       <li key={app.id}>
                         <button
                           type="button"
                           className="launcher-menu__item"
+                          data-start-item={app.id}
+                          autoFocus={a11y.keyboardOnly && app.id === 'about'}
                           onClick={() => runStartAction(app.action)}
                         >
                           <WinIcon name={app.icon} size={28} />
@@ -263,20 +364,48 @@ export function Taskbar({
         </div>
 
         <div className="dock__apps" role="list">
-          {windows.map((w) => (
-            <button
-              key={w.id}
-              type="button"
-              role="listitem"
-              className={`dock__app${w.minimized ? '' : ' is-open'}`}
-              onClick={() => onFocusWindow(w.id)}
-              title={w.title}
-            >
-              {w.kind === 'welcome'
-                ? w.title
-                : w.title.replace(/\s*[—–-]\s*.*$/, '')}
-            </button>
-          ))}
+          {pinnedApps.map((app) => {
+            const matching = windows.filter(
+              (w) => pinnedAppForWindow(w) === app.id,
+            )
+            const openMatches = matching.filter((w) => !w.minimized)
+            const isOpen = openMatches.length > 0
+            const isMinimized = !isOpen && matching.length > 0
+            const isFocused =
+              isOpen && openMatches.some((w) => w.zIndex === topZIndex)
+            const state = isMinimized ? 'minimized' : isOpen ? 'open' : 'closed'
+
+            return (
+              <button
+                key={app.id}
+                type="button"
+                role="listitem"
+                data-app={app.id}
+                data-state={state}
+                className={`dock__app${isOpen ? ' is-open' : ''}${isMinimized ? ' is-minimized' : ''}${isFocused ? ' is-focused' : ''}`}
+                aria-pressed={isOpen}
+                aria-label={app.label}
+                onClick={() => {
+                  if (matching.length === 0) {
+                    runStartAction(app.action)
+                    return
+                  }
+                  if (isFocused) {
+                    openMatches.forEach((w) => onMinimizeWindow(w.id))
+                    return
+                  }
+                  const target = matching
+                    .slice()
+                    .sort((a, b) => b.zIndex - a.zIndex)[0]
+                  onFocusWindow(target.id)
+                }}
+              >
+                <WinIcon name={app.icon} size={22} />
+                <span className="dock__app-label">{app.label}</span>
+                <span className="dock__app-state" aria-hidden="true" />
+              </button>
+            )
+          })}
         </div>
 
         <div className="dock__tray">
@@ -293,25 +422,7 @@ export function Taskbar({
                 setSettingsOpen((v) => !v)
               }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9.25"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                />
-                <circle cx="12" cy="7" r="1.85" fill="currentColor" />
-                <path
-                  d="M7.5 11h9M12 11.25v4.25M12 15.5l-2.75 4M12 15.5l2.75 4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <WinIcon name="accessibility" size={24} />
             </button>
 
             {settingsOpen ? (
@@ -319,60 +430,30 @@ export function Taskbar({
                 id={settingsId}
                 className="a11y-menu"
                 role="dialog"
-                aria-label="Accessibility settings"
+                aria-labelledby={`${settingsId}-title`}
                 onClick={(e) => e.stopPropagation()}
               >
+                <h2 id={`${settingsId}-title`} className="a11y-menu__title">
+                  Ways to explore
+                </h2>
                 <section className="a11y-menu__section" aria-labelledby={`${settingsId}-input`}>
                   <h3 id={`${settingsId}-input`} className="a11y-menu__heading">
                     Interaction
                   </h3>
                   <A11yToggle
-                    label="Head Control"
-                    checked={a11y.headControl}
-                    onChange={() => onToggleA11y('headControl')}
-                  />
-                  <A11yToggle
                     label="Dwell Cursor"
                     checked={a11y.dwellCursor}
                     onChange={() => onToggleA11y('dwellCursor')}
                   />
-                  <A11yToggle
-                    label="Voice Access"
-                    checked={a11y.voiceAccess}
-                    onChange={() => onToggleA11y('voiceAccess')}
-                  />
-                </section>
-
-                <section className="a11y-menu__section" aria-labelledby={`${settingsId}-explore`}>
-                  <h3 id={`${settingsId}-explore`} className="a11y-menu__heading">
-                    Explore
-                  </h3>
-                  <button
-                    type="button"
-                    className="a11y-menu__item a11y-menu__item--nav"
-                    onClick={() => {
-                      setSettingsOpen(false)
-                      onChangeExplore()
-                    }}
-                  >
-                    <span>Change explore mode</span>
-                    <svg
-                      className="a11y-menu__caret"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M6 3.5 10.5 8 6 12.5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
+                  <div className="a11y-menu__filters">
+                    <span>Cursor size</span>
+                    <Dropdown
+                      value={a11y.cursorSize}
+                      options={CURSOR_SIZES}
+                      onChange={onCursorSize}
+                      aria-label="Cursor size"
+                    />
+                  </div>
                 </section>
 
                 <section className="a11y-menu__section" aria-labelledby={`${settingsId}-vision`}>
@@ -418,56 +499,142 @@ export function Taskbar({
                       aria-valuetext={`${a11y.textScale} percent`}
                     />
                   </label>
-                  <label className="a11y-menu__filters">
+                  <div className="a11y-menu__filters">
+                    <span>Font</span>
+                    <Dropdown
+                      value={a11y.fontFamily}
+                      options={FONTS}
+                      onChange={onFontFamily}
+                      aria-label="Font"
+                    />
+                  </div>
+                  <div className="a11y-menu__filters">
                     <span>Color Filters</span>
-                    <select
+                    <Dropdown
                       value={a11y.colorFilter}
-                      onChange={(e) =>
-                        onColorFilter(e.target.value as ColorFilter)
-                      }
+                      options={FILTERS}
+                      onChange={onColorFilter}
                       aria-label="Color Filters"
-                    >
-                      {FILTERS.map((f) => (
-                        <option key={f.id} value={f.id}>
-                          {f.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+                    />
+                  </div>
                 </section>
               </div>
             ) : null}
           </div>
 
-          <button
-            type="button"
-            className={`dock__mag${magnifierActive ? ' is-active' : ''}`}
-            aria-label={magnifierActive ? 'Turn off magnifier' : 'Turn on magnifier'}
-            aria-pressed={magnifierActive}
-            title="Magnifier"
-            onClick={(e) => {
-              e.stopPropagation()
-              onToggleMagnifier()
-            }}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-              <circle
-                cx="10.5"
-                cy="10.5"
-                r="6.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.6"
-              />
-              <path
-                d="M15.5 15.5L21 21"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.8"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+          <div className="dock__quick-group">
+            <button
+              type="button"
+              className={`dock__quick dock__head${a11y.headControl ? ' is-active' : ''}`}
+              aria-label={
+                a11y.headControl ? 'Turn off head control' : 'Turn on head control'
+              }
+              aria-pressed={a11y.headControl}
+              title="Head Control"
+              onClick={(e) => {
+                e.stopPropagation()
+                onToggleA11y('headControl')
+              }}
+            >
+              <WinIcon name="headControl" size={24} />
+            </button>
+
+            <button
+              type="button"
+              className={`dock__quick dock__voice${a11y.voiceAccess ? ' is-active' : ''}`}
+              aria-label={
+                a11y.voiceAccess ? 'Turn off voice access' : 'Turn on voice access'
+              }
+              aria-pressed={a11y.voiceAccess}
+              title="Voice Access"
+              onClick={(e) => {
+                e.stopPropagation()
+                onToggleA11y('voiceAccess')
+              }}
+            >
+              <WinIcon name="voiceAccess" size={24} />
+            </button>
+
+            <button
+              type="button"
+              className={`dock__quick dock__mag${magnifierActive ? ' is-active' : ''}`}
+              aria-label={magnifierActive ? 'Turn off magnifier' : 'Turn on magnifier'}
+              aria-pressed={magnifierActive}
+              title="Magnifier"
+              onClick={(e) => {
+                e.stopPropagation()
+                onToggleMagnifier()
+              }}
+            >
+              <WinIcon name="magnify" size={24} />
+            </button>
+          </div>
+
+          <div className="dock__more-wrap" ref={moreRef}>
+            <button
+              type="button"
+              className={`dock__more${moreOpen ? ' is-active' : ''}`}
+              aria-label="More accessibility controls"
+              aria-expanded={moreOpen}
+              aria-haspopup="menu"
+              title="More"
+              onClick={(e) => {
+                e.stopPropagation()
+                setMoreOpen((v) => !v)
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                <circle cx="4" cy="10" r="1.8" fill="currentColor" />
+                <circle cx="10" cy="10" r="1.8" fill="currentColor" />
+                <circle cx="16" cy="10" r="1.8" fill="currentColor" />
+              </svg>
+            </button>
+
+            {moreOpen ? (
+              <div className="dock__more-menu" role="menu">
+                <button
+                  type="button"
+                  role="menuitemcheckbox"
+                  aria-checked={a11y.headControl}
+                  className={`dock__more-item${a11y.headControl ? ' is-active' : ''}`}
+                  onClick={() => {
+                    onToggleA11y('headControl')
+                    setMoreOpen(false)
+                  }}
+                >
+                  <WinIcon name="headControl" size={22} />
+                  <span>Head Control</span>
+                </button>
+                <button
+                  type="button"
+                  role="menuitemcheckbox"
+                  aria-checked={a11y.voiceAccess}
+                  className={`dock__more-item${a11y.voiceAccess ? ' is-active' : ''}`}
+                  onClick={() => {
+                    onToggleA11y('voiceAccess')
+                    setMoreOpen(false)
+                  }}
+                >
+                  <WinIcon name="voiceAccess" size={22} />
+                  <span>Voice Access</span>
+                </button>
+                <button
+                  type="button"
+                  role="menuitemcheckbox"
+                  aria-checked={magnifierActive}
+                  className={`dock__more-item${magnifierActive ? ' is-active' : ''}`}
+                  onClick={() => {
+                    onToggleMagnifier()
+                    setMoreOpen(false)
+                  }}
+                >
+                  <WinIcon name="magnify" size={22} />
+                  <span>Magnifier</span>
+                </button>
+              </div>
+            ) : null}
+          </div>
+
           <time className="dock__clock" dateTime={now.toISOString()}>
             {time}
           </time>

@@ -7,6 +7,7 @@ import {
 import {
   caseStudies,
   getProject,
+  splitProjectTags,
   type CaseStudy,
   type CaseStudyBlock,
   type Project,
@@ -46,6 +47,16 @@ function groupBlocks(
           columns: chunk.length,
         })
       }
+      mediaBuf = []
+      return
+    }
+
+    if (layout === 'carousel') {
+      groups.push({
+        kind: 'media',
+        items: mediaBuf,
+        columns: mediaBuf.length,
+      })
       mediaBuf = []
       return
     }
@@ -180,6 +191,24 @@ function formatBodyText(text: string): ReactNode {
   return text
 }
 
+/** Normalize • bullets so Challenges / meta read with proper spacing. */
+function formatMetaValue(value: string): ReactNode {
+  const lines = value
+    .split(/\n|(?=•)/)
+    .map((l) => l.trim())
+    .filter(Boolean)
+  if (lines.length > 1 && lines.every((l) => l.startsWith('•'))) {
+    return (
+      <ul className="case-hero__bullets">
+        {lines.map((line) => (
+          <li key={line}>{line.replace(/^•\s*/, '')}</li>
+        ))}
+      </ul>
+    )
+  }
+  return value.replace(/•(?=\S)/g, '• ')
+}
+
 function MediaItem({
   block,
   title,
@@ -290,6 +319,71 @@ function AsideSection({
   )
 }
 
+function MediaCarousel({
+  items,
+  title,
+}: {
+  items: CaseStudyBlock[]
+  title: string
+}) {
+  const [index, setIndex] = useState(0)
+  const count = items.length
+  if (!count) return null
+
+  const current = items[Math.min(index, count - 1)]
+  const go = (dir: -1 | 1) => {
+    setIndex((i) => (i + dir + count) % count)
+  }
+
+  return (
+    <div className="media-carousel" aria-roledescription="carousel">
+      <div className="media-carousel__stage">
+        {current?.src ? (
+          <img
+            key={current.src}
+            src={current.src}
+            alt={current.alt ?? `${title} animation ${index + 1}`}
+            className="media-carousel__frame"
+          />
+        ) : null}
+      </div>
+      {count > 1 ? (
+        <>
+          <button
+            type="button"
+            className="media-carousel__nav is-prev"
+            aria-label="Previous animation"
+            onClick={() => go(-1)}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="media-carousel__nav is-next"
+            aria-label="Next animation"
+            onClick={() => go(1)}
+          >
+            ›
+          </button>
+          <div className="media-carousel__dots" role="tablist" aria-label="Slides">
+            {items.map((item, i) => (
+              <button
+                key={item.src ?? i}
+                type="button"
+                role="tab"
+                aria-selected={i === index}
+                aria-label={`Show animation ${i + 1}`}
+                className={`media-carousel__dot${i === index ? ' is-active' : ''}`}
+                onClick={() => setIndex(i)}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+    </div>
+  )
+}
+
 function CaseHero({
   study,
   tags,
@@ -300,13 +394,18 @@ function CaseHero({
   projectId: string
 }) {
   const largeVisual = projectId === 'spatial-spaces-picker'
+  const hero = study.hero
+  const peachVisual = hero?.accent === 'peach' || projectId === 'skiddy-kitty'
+  const heroClass = [
+    'case-hero',
+    largeVisual ? 'case-hero--large-visual' : '',
+    peachVisual ? 'case-hero--peach' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
-    <header
-      className={
-        largeVisual ? 'case-hero case-hero--large-visual' : 'case-hero'
-      }
-    >
+    <header className={heroClass}>
       <div className="case-hero__copy">
         {study.company ? (
           <p className="case-hero__company">{study.company}</p>
@@ -317,7 +416,7 @@ function CaseHero({
         {study.meta?.map((m) => (
           <div key={m.label} className="case-hero__meta">
             <h3>{m.label}</h3>
-            <p>{m.value}</p>
+            <div className="case-hero__meta-value">{formatMetaValue(m.value)}</div>
           </div>
         ))}
 
@@ -334,11 +433,28 @@ function CaseHero({
           </div>
         ) : null}
 
-        <p className="case-hero__tags">{tags}</p>
+        <p className="case-hero__tags">
+          {splitProjectTags(tags).map((chip) => (
+            <span key={chip} className="project-chip">
+              {chip}
+            </span>
+          ))}
+        </p>
       </div>
-      {study.hero ? (
-        <div className="case-hero__visual">
-          <img src={study.hero.src} alt={study.hero.alt ?? ''} />
+      {hero ? (
+        <div
+          className={`case-hero__visual${hero.video || hero.phone ? ' is-phone' : ''}`}
+        >
+          {hero.video ? (
+            <VimeoPlayer
+              className="is-phone is-portrait"
+              compact
+              src={hero.src}
+              title={`${study.title ?? 'Project'} gameplay`}
+            />
+          ) : (
+            <img src={hero.src} alt={hero.alt ?? ''} />
+          )}
         </div>
       ) : null}
     </header>
@@ -373,35 +489,17 @@ function LockedProjectPanel({
           <img src={project.cover} alt="" />
         </div>
         <div className="project-locked__panel">
-          <span className="project-locked__badge">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <rect
-                x="3"
-                y="7"
-                width="10"
-                height="7"
-                rx="1.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              />
-              <path
-                d="M5.2 7V5.2a2.8 2.8 0 0 1 5.6 0V7"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            </svg>
-            Locked
-          </span>
-          <p className="project-locked__tags">{project.tags}</p>
-          <h1>{project.title}</h1>
+          <div className="project-locked__title-row">
+            <h1>{project.title}</h1>
+            <span className="project-locked__lock">Locked</span>
+          </div>
+          <p className="project-locked__tags">
+            {splitProjectTags(project.tags).map((chip) => (
+              <span key={chip} className="project-chip">
+                {chip}
+              </span>
+            ))}
+          </p>
           <p className="project-locked__summary">{project.summary}</p>
           <p className="project-locked__note">
             This case study is locked. Enter the password to view the full
@@ -475,9 +573,19 @@ export function ProjectView({ projectId }: ProjectViewProps) {
       ) : (
         <>
           <header className="project-view__hero">
-            <img src={project.cover} alt="" className="project-view__cover" />
+            {project.video ? (
+              <VimeoPlayer src={project.video} title={project.title} />
+            ) : (
+              <img src={project.cover} alt="" className="project-view__cover" />
+            )}
             <div className="project-view__hero-text">
-              <p className="project-view__tags">{project.tags}</p>
+              <p className="project-view__tags">
+                {splitProjectTags(project.tags).map((chip) => (
+                  <span key={chip} className="project-chip">
+                    {chip}
+                  </span>
+                ))}
+              </p>
               <h1>{project.title}</h1>
               <p>{project.summary}</p>
               {project.externalUrl ? (
@@ -487,7 +595,7 @@ export function ProjectView({ projectId }: ProjectViewProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Open external link
+                  {project.externalLabel ?? 'Open external link'}
                 </a>
               ) : null}
             </div>
@@ -504,7 +612,7 @@ export function ProjectView({ projectId }: ProjectViewProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Open external link
+            {project.externalLabel ?? 'Open external link'}
           </a>
         </p>
       ) : null}
@@ -524,7 +632,7 @@ export function ProjectView({ projectId }: ProjectViewProps) {
                   {study.meta.map((m) => (
                     <div key={m.label}>
                       <dt>{m.label}</dt>
-                      <dd>{m.value}</dd>
+                      <dd>{formatMetaValue(m.value)}</dd>
                     </div>
                   ))}
                 </dl>
@@ -547,6 +655,30 @@ export function ProjectView({ projectId }: ProjectViewProps) {
                     blocks={section.blocks}
                     projectTitle={project.title}
                   />
+                </section>
+              )
+            }
+
+            if (layout === 'carousel') {
+              const media = section.blocks.filter(
+                (b) => b.type === 'image' && b.src,
+              )
+              const textBlocks = section.blocks.filter(
+                (b) => b.type === 'text' && b.text,
+              )
+              return (
+                <section
+                  key={`${section.title ?? 'section'}-${i}`}
+                  id={section.id}
+                  className="project-view__section project-view__section--carousel"
+                >
+                  {section.title ? <h2>{section.title}</h2> : null}
+                  {textBlocks.map((block, ti) => (
+                    <p key={ti} className="project-view__text">
+                      {formatBodyText(block.text!)}
+                    </p>
+                  ))}
+                  <MediaCarousel items={media} title={project.title} />
                 </section>
               )
             }

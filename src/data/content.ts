@@ -4,7 +4,7 @@ export type ProjectCategory =
   | 'games'
   | 'product'
   | 'prototyping'
-  | 'youtube'
+  | 'player'
 
 export interface CaseStudyMeta {
   label: string
@@ -38,7 +38,15 @@ export interface CaseStudy {
   title?: string
   intro?: string
   meta?: CaseStudyMeta[]
-  hero?: { src: string; alt?: string }
+  hero?: {
+    src: string
+    alt?: string
+    /** Vimeo embed — rendered as phone media in the hero visual */
+    video?: boolean
+    phone?: boolean
+    /** Peach / coral hero visual (Skiddy Kitty) */
+    accent?: 'peach' | 'default'
+  }
   toc?: { href: string; label: string }[]
   sections?: CaseStudySection[]
 }
@@ -51,10 +59,16 @@ export interface Project {
   summary: string
   description: string
   cover: string
+  /** Hover preview GIF for browser project cards (unlocked only). */
+  coverHover?: string
   /** Vertical Steam library capsule; falls back to `cover` when unset. */
   libraryCover?: string
   locked?: boolean
   externalUrl?: string
+  /** Label for the external CTA; defaults to “Open external link”. */
+  externalLabel?: string
+  /** Vimeo embed shown on the project page when there is no full case study. */
+  video?: string
   highlights?: string[]
   featured?: boolean
 }
@@ -66,7 +80,7 @@ export const categories: Record<
   {
     label: string
     description: string
-    icon: 'folder' | 'documents' | 'player' | 'vscode' | 'figma' | 'steam' | 'youtube' | 'browser'
+    icon: 'folder' | 'documents' | 'player' | 'vscode' | 'figma' | 'steam' | 'browser'
   }
 > = {
   games: {
@@ -84,10 +98,10 @@ export const categories: Record<
     description: 'Proof-of-concepts in XR, hardware, and emerging tech.',
     icon: 'vscode',
   },
-  youtube: {
-    label: 'YouTube',
+  player: {
+    label: 'Media Player',
     description: 'A video library of motion, rendering, and in-app clips.',
-    icon: 'youtube',
+    icon: 'player',
   },
 }
 
@@ -95,12 +109,13 @@ export const projects: Project[] = [
   {
     id: 'xbox-game-your-way',
     title: 'XBOX Game Your Way',
-    category: 'youtube',
-    tags: 'Animation',
+    category: 'player',
+    tags: 'VFX • Gaming',
     summary: 'Animation & rendering with Gaming for Everyone @ Xbox',
     description:
-      'Animation and rendering collaboration with the Gaming for Everyone team at Xbox — visual storytelling in support of more adaptable play.',
+      'Animation and rendering collaboration with the Gaming for Everyone team at Xbox: visual storytelling in support of more adaptable play.',
     cover: '/media/covers/Xbox-Controllers.png',
+    video: 'https://player.vimeo.com/video/1209733051?h=aab0964e57',
     highlights: [
       'Partnered with Xbox Gaming for Everyone',
       'Animation and rendering for inclusive gaming storytelling',
@@ -108,17 +123,19 @@ export const projects: Project[] = [
     ],
     externalUrl:
       'https://www.xbox.com/en-US/community/for-everyone/accessibility?xr=shellnav',
+    externalLabel: 'View on xbox.com',
     featured: true,
   },
   {
     id: 'get-goating',
     title: 'Get Goating',
     category: 'games',
-    tags: 'Game Design • Development',
+    tags: 'Gaming • Multiplayer • Indie',
     summary: 'End-to-end game development',
     description:
-      'A complete game built from concept through playable release — systems design, interaction, art direction, and development stitched into one playable experience.',
+      'A complete game built from concept through playable release: systems design, interaction, art direction, and development stitched into one playable experience.',
     cover: '/media/covers/Main-Capsule.png',
+    coverHover: '/media/covers/Recording-2026-06-08-193157.gif',
     libraryCover: '/media/covers/Library-Capsule.png',
     highlights: [
       'Owned design and development end-to-end',
@@ -126,27 +143,30 @@ export const projects: Project[] = [
       'Explored how accessibility can show up even in indie game design',
     ],
     externalUrl: 'https://store.steampowered.com/app/4303820/Get_Goating/',
+    externalLabel: 'Play on Steam',
     featured: true,
   },
   {
     id: 'skiddy-kitty',
     title: 'Skiddy Kitty',
     category: 'games',
-    tags: 'Game Design',
+    tags: 'Game Design • Animation',
     summary: 'UX, design, and animation for the mobile game Skiddy Kitty',
     description:
-      'UX, design, and animation for Skiddy Kitty — a mobile game full of character, motion, and playful UI.',
+      'UX, design, and animation for Skiddy Kitty, a mobile game full of character, motion, and playful UI.',
     cover: '/media/covers/Screen-Shot-2021-03-08-at-6.09.09-PM.png',
+    coverHover: '/media/covers/Skiddy2.gif',
   },
   {
     id: 'spatial-spaces-picker',
     title: 'Spatial Spaces Picker',
     category: 'product',
-    tags: 'Product Design',
+    tags: 'Spatial Computing • UX',
     summary: 'Landing page for mobile, web, and XR',
     description:
-      'Designed the Spaces Picker experience for Spatial across mobile, web, and XR — helping creators land in the right space with clarity and delight.',
+      'Designed the Spaces Picker experience for Spatial across mobile, web, and XR, helping creators land in the right space with clarity and delight.',
     cover: '/media/covers/Screen-Shot-2022-02-22-at-7.51.47-PM.png',
+    coverHover: '/media/covers/Comp-1_1.gif',
     highlights: [
       'Cross-platform product thinking for web, mobile, and headset',
       'Clear entry-point UX for immersive collaboration spaces',
@@ -158,10 +178,10 @@ export const projects: Project[] = [
     id: 'tellsense',
     title: 'TellSense',
     category: 'product',
-    tags: 'Product Design • Prototyping',
+    tags: 'Computer Vision • HoloLens',
     summary: 'Hacking neuropathology through mixed reality',
     description:
-      'An MR prototype exploring how mixed reality can support neuropathology workflows — pairing clinical needs with spatial interaction ideas.',
+      'An MR prototype exploring how mixed reality can support neuropathology workflows, pairing clinical needs with spatial interaction ideas.',
     cover: '/media/covers/Screenshot-2023-08-05-at-8.53.19-PM.png',
     locked: true,
     highlights: [
@@ -175,10 +195,10 @@ export const projects: Project[] = [
     id: 'neato-hardware',
     title: 'Neato Hardware',
     category: 'product',
-    tags: 'Product Design',
+    tags: 'Hardware Interaction • IoT',
     summary: 'Hardware UX and mobile app integration',
     description:
-      'User experience and design for new Neato hardware and its mobile app integration — bridging physical product, software, and everyday home use.',
+      'User experience and design for new Neato hardware and its mobile app integration, bridging physical product, software, and everyday home use.',
     cover: '/media/covers/Comp-9-1.png',
     locked: true,
     highlights: [
@@ -192,11 +212,12 @@ export const projects: Project[] = [
     id: 'neato-default-screen',
     title: 'Neato Default Screen',
     category: 'product',
-    tags: 'Motion Graphics • Product Design',
+    tags: 'Consumer Products • Onboarding • UX',
     summary: 'Motion & product design for the MyNeato app default screen',
     description:
-      "Motion and product design for the MyNeato app's default screen — making status, personality, and brand feel alive in a quiet everyday view.",
+      "Motion and product design for the MyNeato app's default screen, making status, personality, and brand feel alive in a quiet everyday view.",
     cover: '/media/covers/Screen-Shot-2021-03-08-at-6.38.13-PM.png',
+    coverHover: '/media/covers/maps.gif',
     highlights: [
       'Motion systems that communicate status at a glance',
       'Product storytelling inside a utility surface',
@@ -211,7 +232,7 @@ export const projects: Project[] = [
     tags: 'Prototyping',
     summary: 'Proof of concepts for various AR & VR projects',
     description:
-      "A collection of AR and VR proof-of-concepts — rapid spatial sketches used to test interaction ideas, clarity, and what's actually comfortable in headset.",
+      "A collection of AR and VR proof-of-concepts: rapid spatial sketches used to test interaction ideas, clarity, and what's actually comfortable in headset.",
     cover: '/media/covers/Screenshot-2023-08-05-at-1.56.49-PM.png',
     locked: true,
     highlights: [
@@ -228,8 +249,9 @@ export const projects: Project[] = [
     tags: 'Product Design',
     summary: '50-second Spatial auto gallery feature for web',
     description:
-      'Designed an auto-gallery feature that helps creators showcase work on the web in under a minute — turning setup friction into a fast, guided flow.',
+      'Designed an auto-gallery feature that helps creators showcase work on the web in under a minute, turning setup friction into a fast, guided flow.',
     cover: '/media/covers/Screenshot-2023-08-05-at-9.21.31-PM.png',
+    coverHover: '/media/covers/Aug-05-2023-21-22-43.gif',
   },
   {
     id: 'analytics',
@@ -238,8 +260,9 @@ export const projects: Project[] = [
     tags: 'Product Design',
     summary: 'Research & UX for MyNeato History and Analytics',
     description:
-      'Research and UX design of the MyNeato History and Analytics pages — helping users understand robot activity over time.',
+      'Research and UX design of the MyNeato History and Analytics pages, helping users understand robot activity over time.',
     cover: '/media/covers/Screen-Shot-2021-02-27-at-11.26.58-PM.png',
+    coverHover: '/media/covers/analytics.gif',
   },
   {
     id: 'notification-center',
@@ -248,38 +271,42 @@ export const projects: Project[] = [
     tags: 'User Experience',
     summary: 'Notifications system for the MyNeato app',
     description:
-      'Led the design of the notifications system for the MyNeato app — clear, timely, and useful without becoming noise.',
+      'Led the design of the notifications system for the MyNeato app: clear, timely, and useful without becoming noise.',
     cover: '/media/covers/Screen-Shot-2021-03-01-at-7.15.28-PM.png',
+    coverHover: '/media/covers/notifications.gif',
   },
   {
     id: 'fuel-360',
     title: '360Fuel',
-    category: 'youtube',
+    category: 'player',
     tags: 'Motion Design',
     summary: 'Motion design for in-app micro animations',
     description:
-      'Motion design for in-app micro animations — small moments of polish that make everyday interactions feel intentional.',
+      'Motion design for in-app micro animations, small moments of polish that make everyday interactions feel intentional.',
     cover: '/media/covers/Screen-Shot-2021-03-08-at-6.49.20-PM.png',
+    coverHover: '/media/covers/362.gif',
   },
   {
     id: 'neato-user-testing',
     title: 'Neato User Testing',
     category: 'product',
-    tags: 'User Experience',
+    tags: 'User Research',
     summary: 'User testing early MyNeato app flows',
     description:
-      'During the first phases of the MyNeato app, the UX team user-tested initial flows — insights that shaped how the product grew.',
+      'During the first phases of the MyNeato app, the UX team user-tested initial flows, gathering insights that shaped how the product grew.',
     cover: '/media/covers/Screen-Shot-2021-03-01-at-7.51.39-PM.png',
+    coverHover: '/media/covers/tests.gif',
   },
   {
     id: 'neato-animations',
     title: 'Neato In-App Animations',
-    category: 'youtube',
+    category: 'player',
     tags: 'Motion Design',
     summary: 'Instructional videos throughout the MyNeato app',
     description:
       'Design, animation, and rendering of instructional videos throughout the MyNeato app.',
     cover: '/media/covers/Comp-9-1.png',
+    coverHover: '/media/covers/Comp-9.gif',
   },
 ]
 
@@ -288,15 +315,33 @@ export const about = {
   title: 'Senior Inclusive Product Designer',
   company: "Microsoft's Inclusive Tech Lab",
   bio: [
-    "I'm an Inclusive Product Designer at Microsoft's Inclusive Tech Lab, where I design accessible experiences across AI, hardware, Windows, and emerging tech. My work focuses on making technology more adaptable — especially for people whose needs are often treated as edge cases instead of starting points.",
+    "I'm an Inclusive Product Designer at Microsoft's Inclusive Tech Lab, where I design accessible experiences across AI, hardware, Windows, and emerging tech. My work focuses on making technology more adaptable, especially for people whose needs are often treated as edge cases instead of starting points.",
     'Before product design, I worked across animation, marketing, XR, and hardware. That mix still shapes how I think: visually, systematically, and always through the lens of access.',
     "In my free time, I'm usually making games, prototyping adaptive input ideas, or exploring how mixed reality can support accessible design.",
   ],
   companies: [
-    { name: 'Microsoft', url: 'https://www.microsoft.com' },
-    { name: 'Spatial', url: 'https://www.spatial.io/' },
-    { name: 'Neato', url: 'https://neatorobotics.com/' },
-    { name: 'Xbox', url: 'https://www.xbox.com' },
+    {
+      name: 'Microsoft',
+      url: 'https://www.microsoft.com',
+      logo: '/media/logos/microsoft.png',
+    },
+    {
+      name: 'Spatial',
+      url: 'https://www.spatial.io/',
+      logo: '/media/logos/spatial.png',
+    },
+    {
+      name: 'Neato',
+      url: 'https://neatorobotics.com/',
+      logo: '/media/logos/neato.png',
+    },
+  ],
+  timeline: [
+    { year: '2016', label: 'Motion Design' },
+    { year: '2020', label: 'Consumer Robotics' },
+    { year: '2021', label: 'XR' },
+    { year: '2022', label: 'Mixed Reality' },
+    { year: '2024', label: 'Windows + Inclusive Tech Lab' },
   ],
   skills: [
     {
@@ -305,13 +350,13 @@ export const about = {
       icon: '/media/covers/graphic.svg',
     },
     {
-      label: '3D & Motion',
-      detail: 'Cinema 4D, After Effects, Premiere',
+      label: 'Motion',
+      detail: 'Cinema 4D, Maya, Lottie, Redshift, Renderman, After Effects',
       icon: '/media/covers/Cinema-4D.png',
     },
     {
-      label: 'Development',
-      detail: 'Vibe coding, C#, Unity, Cursor, Claude',
+      label: 'Prototyping & Dev',
+      detail: 'Claude, Cursor, Unity, C#, MRTK, Oculus Toolkit',
       icon: '/media/covers/62e131df7fe3599fdd46ecb3.png',
     },
   ],
@@ -328,14 +373,22 @@ export interface AnimationClip {
   projectId?: string
 }
 
-/** Curated queue for the YouTube video app — click through like a library. */
-export const youtubePlaylist: AnimationClip[] = [
+/** Curated queue for the Media Player app — click through like a library. */
+export const mediaPlaylist: AnimationClip[] = [
   {
     id: 'demo-reel',
     title: 'Demo Reel',
     subtitle: 'Selected motion · 2023',
     src: about.reel,
     cover: '/media/covers/Xbox-Controllers.png',
+  },
+  {
+    id: 'xbox-game-your-way',
+    title: 'Game Your Way',
+    subtitle: 'Xbox · Gaming for Everyone',
+    src: 'https://player.vimeo.com/video/1209733051?h=aab0964e57',
+    cover: '/media/covers/Xbox-Controllers.png',
+    projectId: 'xbox-game-your-way',
   },
   {
     id: 'motion-spot-a',
@@ -514,7 +567,7 @@ export const contactInbox: InboxMessage[] = [
     subject: "We probably didn't need to prototype that six different ways.",
     preview: 'Three would have been fine. Four, maybe.',
     body: [
-      'Okay but hear me out —',
+      'Okay but hear me out...',
       "We probably didn't need to prototype that six different ways. Three would have been fine. Four, maybe. Six is a cry for help.",
       'See you yesterday, Future Sarah',
     ],
@@ -530,7 +583,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Untitled (147) has entered the chat.',
       'Also Untitled (146) is still open. Just saying.',
-      '— Figma',
+      'Figma',
     ],
     received: '2026-07-12T17:05:00',
     receivedLabel: 'Yesterday',
@@ -544,7 +597,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'It looks like you’re trying to design. Would you like help?',
       'Also: you seem to be avoiding your email. I can draft a polite decline, a chaotic yes, or a very long maybe.',
-      '— Clippy',
+      'Clippy',
     ],
     received: '2026-07-12T15:22:00',
     receivedLabel: 'Yesterday',
@@ -557,7 +610,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Can we make it pop?',
       'Request status: Denied. With love.',
-      '— Design Team',
+      'Design Team',
     ],
     received: '2026-07-12T11:08:00',
     receivedLabel: 'Yesterday',
@@ -570,7 +623,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Service Dog visit today 🐕',
       'Priority: extremely high. Bring treats energy. Optional: your actual work.',
-      '— Inclusive Tech Lab',
+      'Inclusive Tech Lab',
     ],
     received: '2026-07-11T10:00:00',
     receivedLabel: 'Fri',
@@ -584,7 +637,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Quick check:',
       'Did you tab through it? If not, please do. The keyboard is not just decoration.',
-      '— Accessibility',
+      'Accessibility',
     ],
     received: '2026-07-11T09:15:00',
     receivedLabel: 'Fri',
@@ -598,7 +651,7 @@ export const contactInbox: InboxMessage[] = [
       'Shocking update from the lab:',
       'Turns out people use things differently. Again.',
       'We have stickies. So many stickies.',
-      '— User Research',
+      'User Research',
     ],
     received: '2026-07-10T16:44:00',
     receivedLabel: 'Thu',
@@ -612,7 +665,7 @@ export const contactInbox: InboxMessage[] = [
       'Someone said "quick question."',
       'Estimated meeting length: forever.',
       'A calendar invite has been created against your will.',
-      '— Microsoft T.eams',
+      'Microsoft T.eams',
     ],
     received: '2026-07-10T14:02:00',
     receivedLabel: 'Thu',
@@ -626,7 +679,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Drink some water.',
       'You know what you did.',
-      '— Me',
+      'Me',
     ],
     received: '2026-07-09T13:30:00',
     receivedLabel: 'Wed',
@@ -640,7 +693,7 @@ export const contactInbox: InboxMessage[] = [
       'The PR started as a typo fix.',
       'Somehow this became a design problem.',
       'There are 14 comments and one of them is just the word “vibes.”',
-      '— GitHub',
+      'GitHub',
     ],
     received: '2026-07-09T11:11:00',
     receivedLabel: 'Wed',
@@ -653,7 +706,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Reboot recommended (for you).',
       'Updates can wait. You look tired.',
-      '— Windows',
+      'Windows',
     ],
     received: '2026-07-08T18:00:00',
     receivedLabel: 'Tue',
@@ -666,7 +719,7 @@ export const contactInbox: InboxMessage[] = [
     body: [
       'Water us before we unionize.',
       'This is not a drill. The monstera is drafting bylaws.',
-      '— Plants',
+      'Plants',
     ],
     received: '2026-07-08T08:00:00',
     receivedLabel: 'Tue',
@@ -675,18 +728,26 @@ export const contactInbox: InboxMessage[] = [
 ]
 
 /** Desktop launcher apps (not every project category gets its own icon). */
-export type DesktopAppId = 'games' | 'browser' | 'youtube'
+export type DesktopAppId = 'games' | 'browser' | 'player'
 
 export const desktopApps: Array<{
   id: DesktopAppId
   label: string
-  icon: 'steam' | 'browser' | 'youtube'
+  icon: 'steam' | 'browser' | 'player'
   category?: ProjectCategory
 }> = [
   { id: 'games', label: 'Games', icon: 'steam', category: 'games' },
   { id: 'browser', label: 'Browser', icon: 'browser' },
-  { id: 'youtube', label: 'YouTube', icon: 'youtube', category: 'youtube' },
+  { id: 'player', label: 'Media Player', icon: 'player', category: 'player' },
 ]
+
+/** Split a project's `tags` string into individual chip labels. */
+export function splitProjectTags(tags: string): string[] {
+  return tags
+    .split(/[•|,]/)
+    .map((t) => t.trim())
+    .filter(Boolean)
+}
 
 export function getProjectsByCategory(category: ProjectCategory) {
   return projects.filter((p) => p.category === category)

@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { DWELL_MS_DEFAULT, type A11yState } from '../hooks/useExploreMode'
+import {
+  CURSOR_SCALE,
+  DWELL_MS_DEFAULT,
+  type A11yState,
+} from '../hooks/useExploreMode'
 import { useHeadControl } from '../hooks/useHeadControl'
 import { useVoiceAccess } from '../hooks/useVoiceAccess'
 import type { MatchedVoiceCommand, VoiceAction } from '../lib/voiceCommands'
@@ -40,6 +44,8 @@ const INTERACTIVE_SELECTOR = [
   '.dock__launcher',
   '.dock__settings',
   '.dock__mag',
+  '.dock__head',
+  '.dock__voice',
 ].join(',')
 
 function isUsableTarget(node: HTMLElement) {
@@ -196,6 +202,33 @@ function headStatusLabel(
   }
 }
 
+function A11yPointer({ scale }: { scale: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      if (!ref.current) return
+      ref.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(${scale})`
+    }
+    window.addEventListener('pointermove', onMove, { passive: true })
+    return () => window.removeEventListener('pointermove', onMove)
+  }, [scale])
+
+  return (
+    <div ref={ref} className="a11y-pointer" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+        <path
+          d="M4 2 L4 26 L10 20 L14 28 L18 26 L14 18 L22 18 Z"
+          fill="#fff"
+          stroke="#000"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  )
+}
+
 export function AccessibilityLayer({
   state,
   onVoiceAction,
@@ -211,6 +244,8 @@ export function AccessibilityLayer({
   })
   const snapTargetRef = useRef<HTMLElement | null>(null)
   const showCursor = state.headControl || state.dwellCursor
+  const cursorScale = CURSOR_SCALE[state.cursorSize]
+  const showA11yPointer = state.cursorSize !== 'default' && !showCursor
 
   const handleSmileClick = useCallback(() => {
     const snapped = snapTargetRef.current
@@ -219,7 +254,7 @@ export function AccessibilityLayer({
       (snapped?.isConnected ? snapped : null) ||
       findInteractive(document.elementFromPoint(x, y))
     if (!target?.isConnected) {
-      setAnnounce('Smile detected — nothing to click')
+      setAnnounce('Smile detected, nothing to click')
       return
     }
     activateTarget(target)
@@ -265,7 +300,7 @@ export function AccessibilityLayer({
       target instanceof Element && !!target.closest('.head-preview')
 
     const takeOver = () => {
-      setAnnounce('Mouse detected — head control off')
+      setAnnounce('Mouse detected, head control off')
       onDisableHeadControl()
     }
 
@@ -303,15 +338,35 @@ export function AccessibilityLayer({
       return
     }
 
+    let ro: ResizeObserver | null = null
+    let observed: Element | null = null
+
+    const measureRect = (el: HTMLElement) => {
+      const r = el.getBoundingClientRect()
+      // Flex/min-height tricks can shrink the border box while content still paints.
+      const width = Math.max(r.width, el.scrollWidth)
+      const height = Math.max(r.height, el.scrollHeight)
+      return {
+        left: r.left,
+        top: r.top,
+        width,
+        height,
+      }
+    }
+
     const moveHighlight = () => {
       const el = document.activeElement as HTMLElement | null
       const box = highlightRef.current
       if (!box) return
       if (!el || el === document.body || el === document.documentElement) {
         box.style.opacity = '0'
+        if (ro && observed) {
+          ro.unobserve(observed)
+          observed = null
+        }
         return
       }
-      const r = el.getBoundingClientRect()
+      const r = measureRect(el)
       if (r.width < 2 && r.height < 2) {
         box.style.opacity = '0'
         return
@@ -326,7 +381,15 @@ export function AccessibilityLayer({
         el.textContent?.trim().slice(0, 80) ||
         el.tagName.toLowerCase()
       setAnnounce(label)
+
+      if (observed !== el) {
+        if (ro && observed) ro.unobserve(observed)
+        observed = el
+        ro?.observe(el)
+      }
     }
+
+    ro = new ResizeObserver(() => moveHighlight())
 
     const onFocusIn = () => moveHighlight()
     document.addEventListener('focusin', onFocusIn)
@@ -338,6 +401,7 @@ export function AccessibilityLayer({
       document.removeEventListener('focusin', onFocusIn)
       window.removeEventListener('resize', moveHighlight)
       document.removeEventListener('scroll', moveHighlight, true)
+      ro?.disconnect()
     }
   }, [state.narrator])
 
@@ -537,8 +601,7 @@ export function AccessibilityLayer({
             <svg
               className="head-cursor__progress"
               viewBox="0 0 44 44"
-              width="44"
-              height="44"
+              aria-hidden="true"
             >
               <circle
                 ref={progressRef}
@@ -558,6 +621,8 @@ export function AccessibilityLayer({
           <span className="head-cursor__dot" />
         </div>
       ) : null}
+
+      {showA11yPointer ? <A11yPointer scale={cursorScale} /> : null}
 
       {state.headControl ? (
         <div

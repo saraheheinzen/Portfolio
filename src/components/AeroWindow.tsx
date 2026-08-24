@@ -199,43 +199,45 @@ export function AeroWindow({
               type="button"
               className="os-ctrl close"
               aria-label="Close sticky"
+              data-tip="Close"
               onClick={onClose}
             >
               ×
             </button>
           </div>
         )
-      ) : (
+      ) : linear ? null : (
         <header className="os-window__title" onPointerDown={onTitlePointerDown}>
           <span className="os-window__title-text">{win.title}</span>
-          {linear ? null : (
-            <div className="os-window__controls">
-              <button
-                type="button"
-                className="os-ctrl minimize"
-                aria-label="Minimize"
-                onClick={onMinimize}
-              >
-                –
-              </button>
-              <button
-                type="button"
-                className="os-ctrl maximize"
-                aria-label={win.maximized ? 'Restore' : 'Maximize'}
-                onClick={onToggleMaximize}
-              >
-                ▢
-              </button>
-              <button
-                type="button"
-                className="os-ctrl close"
-                aria-label="Close"
-                onClick={onClose}
-              >
-                ×
-              </button>
-            </div>
-          )}
+          <div className="os-window__controls">
+            <button
+              type="button"
+              className="os-ctrl minimize"
+              aria-label="Minimize"
+              data-tip="Minimize"
+              onClick={onMinimize}
+            >
+              –
+            </button>
+            <button
+              type="button"
+              className="os-ctrl maximize"
+              aria-label={win.maximized ? 'Restore' : 'Maximize'}
+              data-tip={win.maximized ? 'Restore' : 'Maximize'}
+              onClick={onToggleMaximize}
+            >
+              ▢
+            </button>
+            <button
+              type="button"
+              className="os-ctrl close"
+              aria-label="Close"
+              data-tip="Close"
+              onClick={onClose}
+            >
+              ×
+            </button>
+          </div>
         </header>
       )}
       <div className="os-window__body">{children}</div>

@@ -902,12 +902,45 @@
       },
       {
         "label": "Challenges",
-        "value": "•Taking a commonly used game style and innovating it enough to make it an enjoyable experience for the user\n•Overall gameplay, user flows, and general behaviors"
+        "value": "• Taking a commonly used game style and innovating it enough to make it an enjoyable experience for the user\n• Overall gameplay, user flows, and general behaviors"
       }
     ],
+    "hero": {
+      "src": "https://player.vimeo.com/video/496644790",
+      "alt": "Skiddy Kitty gameplay demo",
+      "video": true,
+      "phone": true,
+      "accent": "peach"
+    },
     "sections": [
       {
-        "id": "RealTimeMapping",
+        "id": "CharacterAnimations",
+        "layout": "carousel",
+        "blocks": [
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601c8847c350eba9ef43d484_Poppy.gif",
+            "alt": "A GIF of an orange cat walk cycle"
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601c88976543f98e0a540762_Plant.gif",
+            "alt": "A GIF of a plant simulating a walk cycle and ducking"
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601c889b2fe85c8024058135_trixie.gif",
+            "alt": "A GIF of a brown and tan dog walk cycle"
+          },
+          {
+            "type": "image",
+            "src": "/media/skiddy-kitty/601c88906543f92ebc54070b_Cashew.gif",
+            "alt": "A GIF of an opossum walk cycle"
+          }
+        ]
+      },
+      {
+        "id": "Research",
         "title": "Research",
         "layout": "vertical",
         "blocks": [
@@ -950,7 +983,7 @@
         "blocks": [
           {
             "type": "text",
-            "text": "Okay, maybe a game isn't the best idea. Back to square one. I went through endless iterations trying to create a perfect cleaning run video that provided informational messaging to the user. We can at least make the wait time of a cleaning run valuable, right?\n‍\nNext, time to decide what will play during an actual cleaning run. Unlike the default screen, this video would be shown during every cleaning run until Real Time Mapping is implemented. The team decided to use this time as an opportunity to give users helpful hints."
+            "text": "With flows locked, I jumped into Unity to build the game out end to end: character controllers, tuna collection, lifespan meters, and the skidding locomotion that gives the game its name. Modeling and animation lived in Maya first, then dropped into the Unity scene for lighting, HUD, and camera feel.\n\nIteration here was less about polish and more about play: tuning jump timing, obstacle density, and how punishing (or forgiving) the tuna meter felt after a miss."
           },
           {
             "type": "image",
@@ -960,33 +993,38 @@
         ]
       },
       {
-        "id": "RealTimeMapping",
+        "id": "Beta",
         "title": "Prep for Beta Release & User Testing",
-        "layout": "gallery",
+        "layout": "stack-row",
         "blocks": [
           {
             "type": "text",
-            "text": "With designs finalized, Skiddy Kitty is nearing its beta release and user testing phase. Future updates will be recorded here!"
+            "text": "With designs finalized, Skiddy Kitty is nearing its beta release and user testing phase. Future updates will be recorded here!",
+            "fullWidth": true
           },
           {
             "type": "image",
             "src": "/media/skiddy-kitty/601ca7ba3bea527beec6e966_Group-126.png",
-            "alt": "This screen features the title \"Skiddy Kitty\" with a cute cartoon cat sitting at the bottom. A large \"Skid!\" button is in the center, presumably to start the game or an action. Below the button, three additional options are available: \"Change Pet,\" \"Poopy Power,\" and \"Stats,\" each with corresponding icons. The top-right corner includes a settings gear icon, while the top-left has a profile picture."
+            "alt": "This screen features the title \"Skiddy Kitty\" with a cute cartoon cat sitting at the bottom. A large \"Skid!\" button is in the center, presumably to start the game or an action. Below the button, three additional options are available: \"Change Pet,\" \"Poopy Power,\" and \"Stats,\" each with corresponding icons. The top-right corner includes a settings gear icon, while the top-left has a profile picture.",
+            "phone": true
           },
           {
             "type": "image",
             "src": "/media/skiddy-kitty/601ca7ba3bea525befc6e95d_Tuna.png",
-            "alt": "This screen shows various in-app purchase options labeled \"More Tuna!\" with prices in USD. Different packs include 1,000 Tuna for $0.99, 5,000 Tuna for $1.99, 10,000 Tuna for $3.99, 50 Mice for $1.99, 100 Mice for $4.99, and 1,000 Mice for $10.99. Each option is displayed with icons of fish or mice along with a price, and the total available currency is displayed at the top."
+            "alt": "This screen shows various in-app purchase options labeled \"More Tuna!\" with prices in USD. Different packs include 1,000 Tuna for $0.99, 5,000 Tuna for $1.99, 10,000 Tuna for $3.99, 50 Mice for $1.99, 100 Mice for $4.99, and 1,000 Mice for $10.99. Each option is displayed with icons of fish or mice along with a price, and the total available currency is displayed at the top.",
+            "phone": true
           },
           {
             "type": "image",
             "src": "/media/skiddy-kitty/601ca7ba3bea520af9c6e960_Group-127.png",
-            "alt": "In this screen, the player controls a corgi, seen from a third-person perspective, running on a wooden floor inside a room with furniture. The screen shows a score of 0 at the top and an empty vertical progress bar on the right side. There is a table visible in the room, and a trail of items (fish) appears ahead of the cat."
+            "alt": "In this screen, the player controls a corgi, seen from a third-person perspective, running on a wooden floor inside a room with furniture. The screen shows a score of 0 at the top and an empty vertical progress bar on the right side. There is a table visible in the room, and a trail of items (fish) appears ahead of the cat.",
+            "phone": true
           },
           {
             "type": "image",
             "src": "/media/skiddy-kitty/601ca7ba3bea529ef9c6e963_Tuna-1.png",
-            "alt": "This screen is similar to Screen 3 but from a slightly different angle, showing a wider room view. A potted plant is visible in the foreground, and fish icons are scattered across the room for collection. The score at the top is still 0, and the progress bar is shown on the right."
+            "alt": "This screen is similar to Screen 3 but from a slightly different angle, showing a wider room view. A potted plant is visible in the foreground, and fish icons are scattered across the room for collection. The score at the top is still 0, and the progress bar is shown on the right.",
+            "phone": true
           }
         ]
       }

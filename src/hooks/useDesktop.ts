@@ -21,6 +21,11 @@ export type WindowKind =
   | 'welcome'
   | 'browser'
   | 'terminal'
+  | 'documents'
+  | 'document'
+  | 'photos'
+  | 'photo'
+  | 'figma'
 
 export interface DesktopWindow {
   id: string
@@ -67,10 +72,14 @@ const sizes: Record<WindowKind, { width: number; height: number }> = {
   welcome: { width: 300, height: 420 },
   browser: { width: 1040, height: 700 },
   terminal: { width: 560, height: 480 },
+  documents: { width: 560, height: 420 },
+  document: { width: 860, height: 700 },
+  photos: { width: 720, height: 520 },
+  photo: { width: 980, height: 700 },
+  figma: { width: 1040, height: 700 },
 }
 
 const DOCK_H = 72
-const ICON_COL = 118
 
 type OpenPartial = Omit<
   DesktopWindow,
@@ -78,41 +87,48 @@ type OpenPartial = Omit<
 > &
   Partial<Pick<DesktopWindow, 'width' | 'height' | 'projectId' | 'title'>>
 
-/** Initial overlapping desktop composition (Browser behind, Welcome in front). */
+/** Initial desktop: Featured Browser left-center, Sticky on the far right over its edge. */
 function createLaunchWindows(): DesktopWindow[] {
-  const vw = typeof window !== 'undefined' ? window.innerWidth : 1280
-  const vh = typeof window !== 'undefined' ? window.innerHeight : 800
+  const vw = typeof window !== 'undefined' ? window.innerWidth : 1440
+  const vh = typeof window !== 'undefined' ? window.innerHeight : 900
 
-  const browserW = Math.min(
-    sizes.browser.width,
-    Math.max(720, Math.round(vw * 0.62)),
-  )
-  const browserH = Math.min(
-    sizes.browser.height,
-    Math.max(500, Math.round(vh * 0.72)),
-  )
+  // Phones land on the app-grid home screen instead of pre-opened windows.
+  if (vw <= 720) return []
+
   const welcomeW = sizes.welcome.width
   const welcomeH = sizes.welcome.height
 
-  const browserX = Math.min(
-    Math.max(ICON_COL, Math.round(vw * 0.12)),
-    Math.max(ICON_COL, vw - browserW - 32),
+  // Leave a clear lane on the right so the sticky sits beside the browser, not on the lede.
+  const browserW = Math.min(
+    sizes.browser.width,
+    Math.max(720, Math.round(vw * 0.58)),
   )
-  const browserY = Math.min(
-    Math.max(52, Math.round(vh * 0.07)),
-    Math.max(52, vh - browserH - DOCK_H - 28),
+  const browserH = Math.min(
+    sizes.browser.height,
+    Math.max(540, Math.round(vh * 0.78)),
   )
 
+  const browserX = Math.min(
+    Math.max(40, Math.round(vw * 0.04)),
+    Math.max(40, vw - browserW - welcomeW - 28),
+  )
+  const browserY = Math.min(
+    Math.max(40, Math.round(vh * 0.05)),
+    Math.max(40, vh - browserH - DOCK_H - 20),
+  )
+
+  // Sticky mostly outside the browser — only ~1/3 overlaps the right edge.
   const welcomeX = Math.min(
     Math.max(
-      browserX + Math.round(browserW * 0.28),
-      Math.round(vw * 0.36),
+      browserX + browserW - Math.round(welcomeW * 0.32),
+      Math.round(vw * 0.74),
     ),
-    Math.max(browserX + 80, vw - welcomeW - 28),
+    vw - welcomeW - 18,
   )
+  // Sit lower, roughly a fifth of the way down — clear of the name/title.
   const welcomeY = Math.min(
-    Math.max(browserY + 48, Math.round(vh * 0.14)),
-    Math.max(browserY + 24, vh - welcomeH - DOCK_H - 28),
+    Math.max(browserY + 160, Math.round(vh * 0.2)),
+    Math.max(browserY + 36, vh - welcomeH - DOCK_H - 20),
   )
 
   const zBrowser = ++zCounter
@@ -169,6 +185,11 @@ export function useDesktop() {
     setWindows((prev) =>
       prev.map((w) => (w.id === id ? { ...w, minimized: true } : w)),
     )
+  }, [])
+
+  /** Mobile home screen: back out of every open app at once. */
+  const minimizeAll = useCallback(() => {
+    setWindows((prev) => prev.map((w) => ({ ...w, minimized: true })))
   }, [])
 
   const toggleMaximize = useCallback((id: string) => {
@@ -272,15 +293,15 @@ export function useDesktop() {
         return
       }
 
-      const isLibraryApp = category === 'youtube' || category === 'games'
+      const isLibraryApp = category === 'player' || category === 'games'
       openOrFocus({
         id: folderWindowId(category),
         kind: 'folder',
         title:
-          category === 'youtube'
-            ? 'YouTube — Library'
+          category === 'player'
+            ? 'Media Player - Library'
             : category === 'games'
-              ? 'Steam — Library'
+              ? 'Steam - Library'
               : `${categories[category].label} - Portfolio`,
         category,
         ...(isLibraryApp ? { width: 960, height: 660 } : {}),
@@ -342,9 +363,61 @@ export function useDesktop() {
     openOrFocus({
       id: 'terminal',
       kind: 'terminal',
-      title: 'Terminal — SarahOS',
+      title: 'Terminal - SarahOS',
     })
   }, [openOrFocus])
+
+  const openDocuments = useCallback(() => {
+    openOrFocus({
+      id: 'documents',
+      kind: 'documents',
+      title: 'Documents',
+    })
+  }, [openOrFocus])
+
+  const openDocument = useCallback(
+    (docId: string, title: string, href: string) => {
+      openOrFocus({
+        id: `document-${docId}`,
+        kind: 'document',
+        title,
+        projectId: href,
+      })
+    },
+    [openOrFocus],
+  )
+
+  const openPhotos = useCallback(() => {
+    openOrFocus({
+      id: 'photos',
+      kind: 'photos',
+      title: 'Photos',
+    })
+  }, [openOrFocus])
+
+  const openPhoto = useCallback(
+    (photoId: string, title: string, src: string) => {
+      openOrFocus({
+        id: `photo-${photoId}`,
+        kind: 'photo',
+        title,
+        projectId: src,
+      })
+    },
+    [openOrFocus],
+  )
+
+  const openFigma = useCallback(() => {
+    openOrFocus({
+      id: 'figma',
+      kind: 'figma',
+      title: 'Figma - Design Process',
+    })
+  }, [openOrFocus])
+
+  const resetLaunchLayout = useCallback(() => {
+    setWindows(createLaunchWindows())
+  }, [])
 
   return {
     windows,
@@ -355,6 +428,7 @@ export function useDesktop() {
     focusWindow,
     closeWindow,
     minimizeWindow,
+    minimizeAll,
     toggleMaximize,
     moveWindow,
     resizeWindow,
@@ -365,5 +439,11 @@ export function useDesktop() {
     openContact,
     openWelcome,
     openTerminal,
+    openDocuments,
+    openDocument,
+    openPhotos,
+    openPhoto,
+    openFigma,
+    resetLaunchLayout,
   }
 }

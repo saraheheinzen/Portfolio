@@ -8,6 +8,7 @@ export type DidYouKnowId =
   | 'narrator'
   | 'contrast'
   | 'dwell'
+  | 'font'
 
 export interface DidYouKnowTip {
   id: DidYouKnowId
@@ -33,7 +34,7 @@ export const DID_YOU_KNOW_TIPS: Record<DidYouKnowId, DidYouKnowTip> = {
     id: 'keyboard',
     emoji: '⌨️',
     title: 'Keyboard Navigation',
-    body: 'Many people rarely—or never—use a mouse. Keyboard navigation is essential for many blind users, power users, and people with mobility impairments, making clear focus order and keyboard shortcuts critical to good design.',
+    body: 'Many people rarely, or never, use a mouse. Keyboard navigation is essential for many blind users, power users, and people with mobility impairments, making clear focus order and keyboard shortcuts critical to good design.',
   },
   switch: {
     id: 'switch',
@@ -70,5 +71,11 @@ export const DID_YOU_KNOW_TIPS: Record<DidYouKnowId, DidYouKnowTip> = {
     emoji: '🖱️',
     title: 'Dwell Clicking',
     body: "Dwell clicking lets someone activate a button simply by holding their cursor over it for a short time. It's commonly paired with eye or head tracking so users can interact without pressing a physical mouse button.",
+  },
+  font: {
+    id: 'font',
+    emoji: '🔤',
+    title: 'Readable Fonts',
+    body: 'Typography can make reading easier for people with low vision, dyslexia, or processing differences. Typefaces like Atkinson Hyperlegible and OpenDyslexic are designed to improve letter distinction and reading comfort, and sometimes people just prefer Comic Sans.',
   },
 }

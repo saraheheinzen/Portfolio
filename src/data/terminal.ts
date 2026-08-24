@@ -60,6 +60,8 @@ export const terminal = {
     'projects',
     'games',
     'resume',
+    'photos',
+    'figma',
     'contact',
     'coffee',
     'inspire',
@@ -72,6 +74,9 @@ export type TerminalAction =
   | { type: 'openBrowser' }
   | { type: 'openGames' }
   | { type: 'openContact' }
+  | { type: 'openDocuments' }
+  | { type: 'openPhotos' }
+  | { type: 'openFigma' }
 
 export interface TerminalResult {
   lines: string[]
@@ -86,7 +91,7 @@ function featuredProjectLines() {
   }
   return [
     'Featured work:',
-    ...featured.map((p) => `  • ${p.title} — ${p.summary}`),
+    ...featured.map((p) => `  • ${p.title}: ${p.summary}`),
     '',
     'Opening Browser…',
   ]
@@ -149,16 +154,26 @@ export function runTerminalCommand(raw: string): TerminalResult {
   if (lower === 'resume') {
     return {
       lines: [
-        `${about.name} — ${about.title}`,
+        `${about.name}: ${about.title}`,
         about.company,
         '',
-        ...about.bio.slice(0, 2),
-        '',
-        `Companies: ${about.companies.map((c) => c.name).join(', ')}`,
-        '',
-        'Opening About Me…',
+        'Opening Documents…',
       ],
-      action: { type: 'openAbout' },
+      action: { type: 'openDocuments' },
+    }
+  }
+
+  if (lower === 'photos') {
+    return {
+      lines: ['Opening Photos…'],
+      action: { type: 'openPhotos' },
+    }
+  }
+
+  if (lower === 'figma' || lower === 'process') {
+    return {
+      lines: ['Opening Figma…'],
+      action: { type: 'openFigma' },
     }
   }
 
@@ -249,14 +264,13 @@ export function runTerminalCommand(raw: string): TerminalResult {
   if (lower === 'design') {
     return {
       lines: [
-        'Loading...',
-        '',
         'People first.',
-        '',
         'Technology second.',
-        '',
         'Always.',
+        '',
+        'Opening Figma…',
       ],
+      action: { type: 'openFigma' },
     }
   }
 
