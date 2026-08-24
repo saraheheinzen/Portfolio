@@ -1370,6 +1370,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .browser-view__page {
+  position: relative;
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
@@ -1586,13 +1587,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .browser-home__chips {
-  position: absolute;
-  inset: auto 8px 8px 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 
 .browser-home__chip {
@@ -2299,15 +2294,15 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .project-view--locked {
   max-width: none;
-  height: 100%;
-  min-height: 100%;
+  position: absolute;
+  inset: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 .project-locked {
   position: relative;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4899,6 +4894,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .dock__launcher {
+  position: relative;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -5151,6 +5147,39 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   transform: translate(-50%, 0);
 }
 
+.dock__tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 4px);
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: var(--stroke) solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  font: 600 calc(11px * var(--text-scale)) / 1 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 2px 2px 0 rgba(44, 42, 50, 0.14);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 10;
+}
+
+.dock__launcher:hover .dock__tooltip,
+.dock__launcher:focus-visible .dock__tooltip,
+.dock__settings:hover .dock__tooltip,
+.dock__settings:focus-visible .dock__tooltip,
+.dock__quick:hover .dock__tooltip,
+.dock__quick:focus-visible .dock__tooltip,
+.dock__more:hover .dock__tooltip,
+.dock__more:focus-visible .dock__tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .dock__app-state {
   position: absolute;
   left: 50%;
@@ -5200,6 +5229,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .dock__settings {
+  position: relative;
   width: 40px;
   height: 40px;
   display: flex;
@@ -5283,6 +5313,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .dock__quick {
+  position: relative;
   width: 40px;
   height: 40px;
   display: flex;
@@ -5321,6 +5352,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .dock__more {
+  position: relative;
   width: 40px;
   height: 40px;
   display: flex;

@@ -299,6 +299,7 @@ export function Taskbar({
             onClick={onToggleStart}
           >
             SH
+            <span className="dock__tooltip">Start</span>
           </button>
 
           {startOpen ? (
@@ -416,13 +417,13 @@ export function Taskbar({
               aria-label="Accessibility settings"
               aria-expanded={settingsOpen}
               aria-controls={settingsId}
-              title="Accessibility settings"
               onClick={(e) => {
                 e.stopPropagation()
                 setSettingsOpen((v) => !v)
               }}
             >
               <WinIcon name="accessibility" size={24} />
+              <span className="dock__tooltip">Accessibility</span>
             </button>
 
             {settingsOpen ? (
@@ -530,13 +531,13 @@ export function Taskbar({
                 a11y.headControl ? 'Turn off head control' : 'Turn on head control'
               }
               aria-pressed={a11y.headControl}
-              title="Head Control"
               onClick={(e) => {
                 e.stopPropagation()
                 onToggleA11y('headControl')
               }}
             >
               <WinIcon name="headControl" size={24} />
+              <span className="dock__tooltip">Head Control</span>
             </button>
 
             <button
@@ -546,13 +547,13 @@ export function Taskbar({
                 a11y.voiceAccess ? 'Turn off voice access' : 'Turn on voice access'
               }
               aria-pressed={a11y.voiceAccess}
-              title="Voice Access"
               onClick={(e) => {
                 e.stopPropagation()
                 onToggleA11y('voiceAccess')
               }}
             >
               <WinIcon name="voiceAccess" size={24} />
+              <span className="dock__tooltip">Voice Access</span>
             </button>
 
             <button
@@ -560,13 +561,13 @@ export function Taskbar({
               className={`dock__quick dock__mag${magnifierActive ? ' is-active' : ''}`}
               aria-label={magnifierActive ? 'Turn off magnifier' : 'Turn on magnifier'}
               aria-pressed={magnifierActive}
-              title="Magnifier"
               onClick={(e) => {
                 e.stopPropagation()
                 onToggleMagnifier()
               }}
             >
               <WinIcon name="magnify" size={24} />
+              <span className="dock__tooltip">Magnifier</span>
             </button>
           </div>
 
@@ -577,7 +578,6 @@ export function Taskbar({
               aria-label="More accessibility controls"
               aria-expanded={moreOpen}
               aria-haspopup="menu"
-              title="More"
               onClick={(e) => {
                 e.stopPropagation()
                 setMoreOpen((v) => !v)
@@ -588,6 +588,7 @@ export function Taskbar({
                 <circle cx="10" cy="10" r="1.8" fill="currentColor" />
                 <circle cx="16" cy="10" r="1.8" fill="currentColor" />
               </svg>
+              <span className="dock__tooltip">More</span>
             </button>
 
             {moreOpen ? (
