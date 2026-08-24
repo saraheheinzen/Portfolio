@@ -8,7 +8,6 @@ import {
   resolveBrowserRoute,
 } from '../data/browser'
 import {
-  categories,
   getProject,
   type ProjectCategory,
 } from '../data/content'
@@ -298,11 +297,7 @@ export function useDesktop() {
         id: folderWindowId(category),
         kind: 'folder',
         title:
-          category === 'player'
-            ? 'Media Player - Library'
-            : category === 'games'
-              ? 'Steam - Library'
-              : `${categories[category].label} - Portfolio`,
+          category === 'player' ? 'Media Player - Library' : 'Steam - Library',
         category,
         ...(isLibraryApp ? { width: 960, height: 660 } : {}),
       })

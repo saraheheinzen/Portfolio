@@ -211,7 +211,7 @@ function writeStoredDark(on: boolean) {
 }
 
 export function useExploreMode() {
-  const [mode, setModeState] = useState<ExploreMode | null>(() => readStoredMode() ?? 'mouse')
+  const [mode] = useState<ExploreMode | null>(() => readStoredMode() ?? 'mouse')
   const [overrides, setOverrides] = useState<Partial<Omit<A11yState, 'mode'>>>(
     () => (readStoredDark() ? { darkMode: true } : {}),
   )

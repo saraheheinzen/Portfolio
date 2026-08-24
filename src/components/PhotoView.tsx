@@ -4,7 +4,7 @@ interface PhotoViewProps {
   alt: string
 }
 
-export function PhotoView({ src, title, alt }: PhotoViewProps) {
+export function PhotoView({ src, alt }: PhotoViewProps) {
   return (
     <div className="photo-view">
       <div className="photo-view__stage">

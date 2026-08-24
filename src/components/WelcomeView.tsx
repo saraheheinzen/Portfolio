@@ -82,8 +82,6 @@ function ScreenReaderSticky({
 
 export function WelcomeView({
   variant = 'default',
-  onOpenAbout,
-  onOpenBrowser,
   onOpenPlace,
   checked = EMPTY_CHECKED,
   onToggleChecklist,
