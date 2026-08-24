@@ -7,14 +7,6 @@ export function DocumentView({ href, title }: DocumentViewProps) {
   return (
     <div className="document-view">
       <div className="document-view__toolbar">
-        <a
-          className="document-view__link"
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open in new tab
-        </a>
         <a className="document-view__link" href={href} download>
           Download
         </a>

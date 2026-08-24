@@ -616,7 +616,7 @@ body {
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font: 600 1calc(2px * var(--text-scale)) / 1 var(--ui);
+  font: 600 calc(12px * var(--text-scale)) / 1 var(--ui);
   letter-spacing: 0;
   cursor: pointer;
   transition:
@@ -726,7 +726,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 .folder-view .desktop-icon {
   width: 100%;
   color: var(--ink);
-  font: 600 1calc(3px * var(--text-scale)) / 1.25 var(--ui);
+  font: 600 calc(13px * var(--text-scale)) / 1.25 var(--ui);
   letter-spacing: 0.01em;
   text-transform: none;
 }
@@ -1397,7 +1397,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   padding: 0;
   border: 0;
   background: none;
-  font: 600 1calc(3px * var(--text-scale))/1.2 var(--mono);
+  font: 600 calc(13px * var(--text-scale))/1.2 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1733,7 +1733,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .document-view__link {
-  font: 600 1calc(3px * var(--text-scale)) / 1.2 var(--ui);
+  font: 600 calc(13px * var(--text-scale)) / 1.2 var(--ui);
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -1760,28 +1760,6 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   height: 100%;
   min-height: 100%;
   background: var(--paper);
-}
-
-.photo-view__toolbar {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-  padding: 10px 14px;
-  border-bottom: 1px solid rgba(44, 42, 50, 0.12);
-  background: var(--paper-2, #f4eee9);
-}
-
-.photo-view__link {
-  font: 600 1calc(3px * var(--text-scale)) / 1.2 var(--ui);
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.photo-view__link:hover,
-.photo-view__link:focus-visible {
-  color: #2c6a8f;
 }
 
 .photo-view__stage {
@@ -1902,7 +1880,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   border-radius: 6px;
   background: transparent;
   color: #c8c8c8;
-  font: 600 1calc(2px * var(--text-scale))/1.3 var(--ui);
+  font: 600 calc(12px * var(--text-scale))/1.3 var(--ui);
   text-align: left;
   cursor: pointer;
 }
@@ -1990,7 +1968,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 .guide-page__nav a {
   color: var(--muted);
   text-decoration: none;
-  font: 600 1calc(2px * var(--text-scale))/1.35 var(--ui);
+  font: 600 calc(12px * var(--text-scale))/1.35 var(--ui);
 }
 
 .guide-page__nav a:hover,
@@ -2480,7 +2458,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 .project-locked__form button {
   justify-self: start;
   padding: 10px 18px;
-  font: 600 1calc(3px * var(--text-scale))/1 var(--mono);
+  font: 600 calc(13px * var(--text-scale))/1 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
@@ -3946,13 +3924,14 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__body {
   display: grid;
-  grid-template-columns: 52px minmax(200px, 0.72fr) minmax(300px, 1.55fr);
+  grid-template-columns: 52px minmax(0, 0.72fr) minmax(0, 1.55fr);
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
 
 .mail-app__body--inbox-closed {
-  grid-template-columns: 52px minmax(300px, 1fr);
+  grid-template-columns: 52px minmax(0, 1fr);
 }
 
 .mail-app__folders {
@@ -4032,12 +4011,12 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__list-header h1 {
   margin: 0;
-  font: 600 1calc(3px * var(--text-scale))/1.2 var(--ui);
+  font: 600 calc(13px * var(--text-scale))/1.2 var(--ui);
   color: #323130;
 }
 
 .mail-app__list-header span {
-  font: 500 1calc(2px * var(--text-scale))/1 var(--mono);
+  font: 500 calc(12px * var(--text-scale))/1 var(--mono);
   color: #8a8886;
 }
 
@@ -4078,7 +4057,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   height: 26px;
   margin-top: 1px;
   border-radius: 50%;
-  font: 600 1calc(2px * var(--text-scale))/1 var(--mono);
+  font: 600 calc(12px * var(--text-scale))/1 var(--mono);
   color: #fff;
   background: #8764b8;
   opacity: 0.9;
@@ -4107,7 +4086,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .mail-app__message-top strong {
-  font: 500 1calc(3px * var(--text-scale))/1.25 var(--ui);
+  font: 500 calc(13px * var(--text-scale))/1.25 var(--ui);
   color: #605e5c;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -4116,12 +4095,12 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__message-top time {
   flex-shrink: 0;
-  font: 500 1calc(2px * var(--text-scale))/1 var(--mono);
+  font: 500 calc(12px * var(--text-scale))/1 var(--mono);
   color: #8a8886;
 }
 
 .mail-app__message-subject {
-  font: 400 1calc(3px * var(--text-scale))/1.3 var(--ui);
+  font: 400 calc(13px * var(--text-scale))/1.3 var(--ui);
   color: #605e5c;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -4129,7 +4108,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .mail-app__message-preview {
-  font: 400 1calc(2px * var(--text-scale))/1.35 var(--ui);
+  font: 400 calc(12px * var(--text-scale))/1.35 var(--ui);
   color: #8a8886;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -4157,7 +4136,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 .mail-app__letter-header h2,
 .mail-app__compose-header h2 {
   margin: 0 0 14px;
-  font: 600 2calc(0px * var(--text-scale))/1.25 var(--ui);
+  font: 600 calc(20px * var(--text-scale))/1.25 var(--ui);
   color: #201f1e;
 }
 
@@ -4171,12 +4150,12 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__letter-meta strong {
   display: block;
-  font: 600 1calc(4px * var(--text-scale))/1.3 var(--ui);
+  font: 600 calc(14px * var(--text-scale))/1.3 var(--ui);
 }
 
 .mail-app__letter-meta p {
   margin: 2px 0 0;
-  font: 400 1calc(2px * var(--text-scale))/1.4 var(--ui);
+  font: 400 calc(12px * var(--text-scale))/1.4 var(--ui);
   color: #605e5c;
 }
 
@@ -4187,7 +4166,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__letter-body p {
   margin: 0 0 12px;
-  font: 400 1calc(4px * var(--text-scale))/1.55 var(--ui);
+  font: 400 calc(14px * var(--text-scale))/1.55 var(--ui);
   color: #323130;
 }
 
@@ -4197,7 +4176,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__reply {
   padding: 8px 16px;
-  font: 600 1calc(2px * var(--text-scale))/1 var(--ui);
+  font: 600 calc(12px * var(--text-scale))/1 var(--ui);
   color: #0078d4;
   background: #fff;
   border: 1px solid #8a8886;
@@ -4216,7 +4195,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__compose-header p {
   margin: 0 0 4px;
-  font: 400 1calc(3px * var(--text-scale))/1.4 var(--ui);
+  font: 400 calc(13px * var(--text-scale))/1.4 var(--ui);
   color: #605e5c;
 }
 
@@ -4232,7 +4211,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 .mail-app__compose-note {
   margin: 0 0 16px;
   padding: 10px 12px;
-  font: 400 1calc(3px * var(--text-scale))/1.45 var(--ui);
+  font: 400 calc(13px * var(--text-scale))/1.45 var(--ui);
   color: #605e5c;
   background: #f3f2f1;
   border-left: 3px solid #0078d4;
@@ -4246,7 +4225,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 .mail-app__form label {
   display: grid;
   gap: 4px;
-  font: 500 1calc(3px * var(--text-scale))/1.2 var(--mono);
+  font: 500 calc(13px * var(--text-scale))/1.2 var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #605e5c;
@@ -4273,7 +4252,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   justify-self: start;
   margin-top: 4px;
   padding: 9px 18px;
-  font: 600 1calc(3px * var(--text-scale))/1 var(--ui);
+  font: 600 calc(13px * var(--text-scale))/1 var(--ui);
   color: #fff;
   background: #0078d4;
   border: 1px solid #106ebe;
@@ -4287,7 +4266,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 
 .mail-app__status {
   margin-top: 10px;
-  font: 400 1calc(3px * var(--text-scale))/1.4 var(--ui);
+  font: 400 calc(13px * var(--text-scale))/1.4 var(--ui);
   color: #605e5c;
 }
 
@@ -4637,7 +4616,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
 }
 
 .sticky-note__actions button {
-  font: 600 1calc(2px * var(--text-scale))/1 var(--mono);
+  font: 600 calc(12px * var(--text-scale))/1 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 9px 12px;
@@ -4926,7 +4905,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   border: var(--stroke) solid var(--ink);
   background: var(--peach);
   color: var(--ink);
-  font: 600 1calc(2px * var(--text-scale))/1 var(--mono);
+  font: 600 calc(12px * var(--text-scale))/1 var(--mono);
   letter-spacing: 0.04em;
   cursor: pointer;
   box-shadow:
@@ -7667,13 +7646,13 @@ html[data-color-filter='tritanopia'] {
 
 .clippy-tip-bubble__title {
   margin: 0 0 5px;
-  font: 650 1calc(4px * var(--text-scale)) / 1.3 var(--ui);
+  font: 650 calc(14px * var(--text-scale)) / 1.3 var(--ui);
   color: var(--ink);
 }
 
 .clippy-tip-bubble__copy {
   margin: 0;
-  font: 500 1calc(2px * var(--text-scale)) / 1.45 var(--ui);
+  font: 500 calc(12px * var(--text-scale)) / 1.45 var(--ui);
   color: var(--muted);
 }
 

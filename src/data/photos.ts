@@ -41,6 +41,18 @@ const photoDetails: Record<string, { label: string; alt: string }> = {
     label: 'GAAD at the Lab',
     alt: 'Two people watch a wall display streaming a GAAD 2026 session on Call of Duty Black Ops 7 and Cephable at the Microsoft Inclusive Tech Lab, with live captions on screen.',
   },
+  '1740126520807.jpg': {
+    label: 'M-Enabling: Accessibility in VR',
+    alt: 'Four people sit on a panel on stage at M-Enabling.',
+  },
+  '1722553277400.jpg': {
+    label: 'Inclusive Tech Lab Tour',
+    alt: "A group poses with Lainey Feingold in front of the Inclusive Tech Lab's Sensory Area.",
+  },
+  '1731704715949.jpg': {
+    label: 'Collaboration with Blue Origin',
+    alt: "A group poses in front of Blue Origin's New Shepard rocket.",
+  },
 }
 
 const hcById = Object.fromEntries(
