@@ -107,8 +107,12 @@ function createLaunchWindows(): DesktopWindow[] {
     Math.max(540, Math.round(vh * 0.78)),
   )
 
+  // On wide screens, center the browser+sticky cluster instead of hugging
+  // the left edge with a lot of empty space on the right.
+  const clusterWidth = browserW + welcomeW * 0.68
+  const centeredBrowserX = Math.round((vw - clusterWidth) / 2)
   const browserX = Math.min(
-    Math.max(40, Math.round(vw * 0.04)),
+    Math.max(40, centeredBrowserX),
     Math.max(40, vw - browserW - welcomeW - 28),
   )
   const browserY = Math.min(
