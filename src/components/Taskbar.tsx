@@ -147,6 +147,11 @@ export function Taskbar({
   const [now, setNow] = useState(() => new Date())
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
+  const [appTooltip, setAppTooltip] = useState<{
+    label: string
+    left: number
+    bottom: number
+  } | null>(null)
   const settingsRef = useRef<HTMLDivElement>(null)
   const moreRef = useRef<HTMLDivElement>(null)
   const launcherRef = useRef<HTMLButtonElement>(null)
@@ -160,6 +165,23 @@ export function Taskbar({
       )
     aboutButton?.focus({ preventScroll: true })
   }
+
+  // .dock__apps scrolls horizontally, which forces vertical clipping too —
+  // render this tooltip position:fixed so it escapes that clip instead of
+  // relying on the anchored-absolute trick the other dock buttons use.
+  const showAppTooltip = (
+    e: { currentTarget: HTMLElement },
+    label: string,
+  ) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setAppTooltip({
+      label,
+      left: rect.left + rect.width / 2,
+      bottom: window.innerHeight - rect.top + 10,
+    })
+  }
+
+  const hideAppTooltip = () => setAppTooltip(null)
 
   useEffect(() => {
     const id = window.setInterval(() => setNow(new Date()), 30_000)
@@ -400,14 +422,27 @@ export function Taskbar({
                     .sort((a, b) => b.zIndex - a.zIndex)[0]
                   onFocusWindow(target.id)
                 }}
+                onMouseEnter={(e) => showAppTooltip(e, app.label)}
+                onMouseLeave={hideAppTooltip}
+                onFocus={(e) => showAppTooltip(e, app.label)}
+                onBlur={hideAppTooltip}
               >
                 <WinIcon name={app.icon} size={22} />
-                <span className="dock__app-label">{app.label}</span>
                 <span className="dock__app-state" aria-hidden="true" />
               </button>
             )
           })}
         </div>
+
+        {appTooltip ? (
+          <span
+            className="dock__tooltip dock__tooltip--fixed"
+            style={{ left: appTooltip.left, bottom: appTooltip.bottom }}
+            aria-hidden="true"
+          >
+            {appTooltip.label}
+          </span>
+        ) : null}
 
         <div className="dock__tray">
           <div className="dock__settings-wrap" ref={settingsRef}>

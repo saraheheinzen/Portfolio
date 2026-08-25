@@ -65,6 +65,7 @@ export function VimeoPlayer({
   const [ready, setReady] = useState(false)
   const [current, setCurrent] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [muted, setMuted] = useState(false)
 
   const progress = duration > 0 ? Math.min(1, current / duration) : 0
 
@@ -111,6 +112,7 @@ export function VimeoPlayer({
     setCurrent(0)
     setDuration(0)
     durationRef.current = 0
+    setMuted(false)
 
     let alive = true
 
@@ -161,7 +163,10 @@ export function VimeoPlayer({
         setReady(true)
         if (autoPlayRef.current) {
           void player.play().catch(() => {
-            void player.setMuted(true).then(() => player.play())
+            void player.setMuted(true).then(() => {
+              if (alive) setMuted(true)
+              return player.play()
+            })
           })
         }
       })
@@ -194,6 +199,16 @@ export function VimeoPlayer({
     void player.play().catch(() => {
       // Last resort if the gesture was stripped: muted play still starts video.
       void player.setMuted(true).then(() => player.play())
+    })
+  }, [])
+
+  const toggleMute = useCallback(() => {
+    const player = playerRef.current
+    if (!player) return
+    setMuted((prev) => {
+      const next = !prev
+      void player.setMuted(next)
+      return next
     })
   }, [])
 
@@ -300,6 +315,16 @@ export function VimeoPlayer({
           <span className="media-player__time">
             {label ?? formatTime(current)}
           </span>
+          <button
+            type="button"
+            className="media-player__btn media-player__btn--mute"
+            aria-label={muted ? 'Unmute' : 'Mute'}
+            aria-pressed={muted}
+            disabled={!ready}
+            onClick={toggleMute}
+          >
+            {muted ? '🔇' : '🔊'}
+          </button>
         </div>
       </div>
     </div>

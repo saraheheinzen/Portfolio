@@ -3530,6 +3530,7 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   margin: 0;
   padding: 0;
   display: grid;
+  align-content: start;
   gap: 6px;
   overflow: auto;
   flex: 1;
@@ -5121,32 +5122,6 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   display: block;
 }
 
-.dock__app-label {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 10px);
-  transform: translate(-50%, 4px);
-  padding: 5px 10px;
-  border-radius: 8px;
-  border: var(--stroke) solid var(--ink);
-  background: #fff;
-  color: var(--ink);
-  font: 600 calc(11px * var(--text-scale)) / 1 var(--mono);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  box-shadow: 2px 2px 0 rgba(44, 42, 50, 0.14);
-  transition: opacity 0.12s ease, transform 0.12s ease;
-}
-
-.dock__app:hover .dock__app-label,
-.dock__app:focus-visible .dock__app-label {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
 .dock__tooltip {
   position: absolute;
   left: 50%;
@@ -5166,6 +5141,17 @@ html.a11y-motion-off .folder-view__hc-switch-thumb {
   box-shadow: 2px 2px 0 rgba(44, 42, 50, 0.14);
   transition: opacity 0.12s ease, transform 0.12s ease;
   z-index: 10;
+}
+
+/* Positioned via inline left/bottom (px) computed in JS — escapes the
+   horizontal-scroll clipping on .dock__apps that the anchored version
+   can't. */
+.dock__tooltip--fixed {
+  position: fixed;
+  bottom: auto;
+  transform: translateX(-50%);
+  opacity: 1;
+  z-index: 5100;
 }
 
 .dock__launcher:hover .dock__tooltip,
